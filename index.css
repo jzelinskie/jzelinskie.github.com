@@ -1,0 +1,29 @@
+body {
+  color: #333;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+  font-size: 14px;
+  line-height: 20px;
+  background-color: white;
+}
+
+.keyword {
+  font-weight: bold;
+}
+
+.comment {
+  color: #998;
+}
+
+.string {
+  color: #D14;
+}
+
+pre {
+  background-color: white;
+  color: #333;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+}
