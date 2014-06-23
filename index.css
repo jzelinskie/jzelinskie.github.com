@@ -1,29 +1,35 @@
 body {
   color: #333;
-  font-family: Consolas, "Liberation Mono", Courier, monospace;
+  font-family: Monaco, Consolas, "Lucida Console", monospace;
   font-size: 14px;
   line-height: 20px;
-  background-color: white;
+  background-color: #272822;
 }
 
 .keyword {
   font-weight: bold;
+  color: #F92672;
 }
 
 .comment {
-  color: #998;
+  color: #75715E;
 }
 
 .string {
-  color: #D14;
+  color: #E6DB74;
+}
+
+.todo {
+  color: #fff;
+  background-color: #000;
 }
 
 pre {
-  background-color: white;
-  color: #333;
+  background-color: #272822;
+  color: #F8F8F2;
 }
 
 a {
-  color: #333;
+  color: inherit;
   text-decoration: none;
 }
