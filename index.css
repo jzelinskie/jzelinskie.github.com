@@ -1,7 +1,7 @@
 body {
   color: #333;
   font-family: Monaco, Consolas, "Lucida Console", monospace;
-  font-size: 14px;
+  font-size: 9.5pt;
   line-height: 20px;
   background-color: #272822;
 }
@@ -27,6 +27,7 @@ body {
 pre {
   background-color: #272822;
   color: #F8F8F2;
+  font-family: inherit;
 }
 
 a {
