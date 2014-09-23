@@ -1,0 +1,70 @@
+==================================================================
+https://keybase.io/jzelinskie
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://jzelinskie.com
+  * I am jzelinskie (https://keybase.io/jzelinskie) on keybase.
+  * I have a public key with fingerprint 306E 99CB 7069 D6B1 8943  B14F AB71 936A 73BD 25F1
+
+To claim this, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "306e99cb7069d6b18943b14fab71936a73bd25f1",
+            "host": "keybase.io",
+            "key_id": "ab71936a73bd25f1",
+            "uid": "0b398d9c13ba6f1b58dfc8734fafea00",
+            "username": "jzelinskie"
+        },
+        "service": {
+            "hostname": "jzelinskie.com",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1411504562,
+    "expire_in": 157680000,
+    "prev": "df9098cffcecc1ab6cdb4d9b01f8759bac4711d23000412db14e255d2dad2afd",
+    "seqno": 4,
+    "tag": "signature"
+}
+
+with the aforementioned key, yielding the PGP signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v1.0.5
+Comment: https://keybase.io/crypto
+
+yML2AnicO8LLzMDFuLpwclbxXtWPjKcPfC1lCFG8ualaKSk/pVLJqlopOxVMpWXm
+pacWFRRl5pUoWSkZG5ilWlomJ5kbmFmmmCUZWliaGCcZmqQlJpkbWhqbJZobJ6UY
+maYZKukoZeQXg3QAjUlKLE7Vy8wHigE58ZkpQFEs6kvBEgZJxpYWKZbJhsZJiWZp
+hkmmFilpyRbmxkAr0lITDQxACotTi/ISc1OBqrOqUnMy84qzM1OVanWUgOJlmcmp
+IFeDLMdQo5ecnwvUX1CUX5KfnJ8DlMsoKSmwAmktqSwAqS1PTYqHmhKflJmXAvQ7
+UENZalFxZn6ekpUhUGVySSbIWEMTQ0NTAxNTMyMdpdSKgsyi1PhMkApTczMLAyAA
+WZNaBjQyJc3SwNIiOS0tOTU52TAxySw5JckkxTLJwDDNwtzUMikx2cTc0DDFyBio
+ycTQKAUYmqlGpqYpRimJKUaJaSlKIH8V5uUrWZkAnZmYDjSyODM9L7GktAjo6UMH
+Y1gYGLkY2FiZQLHHwMUpAIvT4Az+f3rXO77Mrnt9cot5k8/Gdi/pbew6Tlvm9Gc3
+r++SXymqVXbPyvbavDWht9MUfshvrN186O6PhXf4/E8YufTtzKw6LX+752Lr933L
+Nc8tWzRZ5oPkxeucsaotaz5nfctJqLiZxnl92Wm3+QsSokvUHVb4Jd88cZnVdq/q
+tdtMXyPKj1ztmLh1TcCEbROiHHnj1x3N9C/NqJKQXbw8wyNV5HaC492H18yeHZkw
+x+zrspA3Yb0H1mw8dvybwRQNnmalJrH5/t1cn4VOfdossyLDdOHCp3VuDZssfkx9
+//HtlZaQ9U8ucvz/fzi9f/KSXO4j2/YKlz97ah7hkrfl0yXjZR/nVoQd6tI8n1/U
+rlG+/7Bp9oksvqn72FtWG3+7f+C20PX1BwwOPzixzYnXI8+n/e6CkKXh06ev0OVO
+3eMn/5lz4aFEV7tznncb/JIzpU8cYdRum+ul4/R1CZ9HcIDV+rA1WWoGKw9m5v59
+bSp7kLftyaJ8r4+ur1/41jil+HYH2dVZPrWd8rChzXCm6/l9EydeX3X9gs4z+XPH
+RU2P7ryS5XIjc6mTTZfUNx2rdOHon0ynJmWVV4vkHjeNSb2wedM/l6U5+Sdcpbcl
+C7n1SQYHT6u67v3Pw37KoVme4j0HP6XdmXHjp+dh7YSNviraZ8rU1I+zd/OenX1o
+q8uiDVVMzXvbBU+9szlanXrq87cjUv8cOllST5f/0/D/+80DABXIol4=
+=TC+/
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/jzelinskie
+
+==================================================================
