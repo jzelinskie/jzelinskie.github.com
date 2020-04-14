@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>containers on The Ramblings of Jimmy Zelinskie</title>
+    <link>https://jzelinskie.com/tags/containers/</link>
+    <description>Recent content in containers on The Ramblings of Jimmy Zelinskie</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 26 Nov 2019 00:00:00 -0400</lastBuildDate>
+    
+	<atom:link href="https://jzelinskie.com/tags/containers/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A toolbox for your dotfiles</title>
+      <link>https://jzelinskie.com/posts/toolbox-for-your-dotfiles/</link>
+      <pubDate>Tue, 26 Nov 2019 00:00:00 -0400</pubDate>
+      
+      <guid>https://jzelinskie.com/posts/toolbox-for-your-dotfiles/</guid>
+      <description>So you may have heard about this Docker™ thing. You know; it runs containers and all that jazz. You might think the container craze is only for developers that think this time they&amp;rsquo;ve finally understood operations. You&amp;rsquo;d be wrong however. I&amp;rsquo;m going to explain a simple trick that I use often when sshing into a remote machine for some old school sysadmin work.
+Totally lost? If the title of this post seems unintelligible, fear not!</description>
+    </item>
+    
+    <item>
+      <title>OCI Artifacts</title>
+      <link>https://jzelinskie.com/posts/oci-artifacts/</link>
+      <pubDate>Thu, 22 Aug 2019 00:00:00 -0400</pubDate>
+      
+      <guid>https://jzelinskie.com/posts/oci-artifacts/</guid>
+      <description>In 2016, CoreOS hired Antoine Legrand (@ant31). Antoine is an incredible engineer and a huge asset to the Kubernetes community; you may recognize him from many contributions, but most people probably would be familiar with a little project he started called Kubespray.
+The first time I met Antoine, he had hacked together a demo of packaging up and storing Kubernetes resources into Quay. A fair bit after the initial demo, we decided it was worth pursuing for realsies and I helped Antoine through the process of making his demo a production grade feature for all Quay users.</description>
+    </item>
+    
+    <item>
+      <title>You&#39;re not running vanilla Kubernetes</title>
+      <link>https://jzelinskie.com/posts/youre-not-running-vanilla-kubernetes/</link>
+      <pubDate>Sun, 06 May 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://jzelinskie.com/posts/youre-not-running-vanilla-kubernetes/</guid>
+      <description>Stop pretending it isn&amp;rsquo;t your own clumsy distribution. Seriously.
+ Haven&amp;rsquo;t heard of &amp;ldquo;vanilla Kubernetes&amp;rdquo;? In the ever competitive age of selling Kubernetes, there seems to be a trend towards promising vendor neutrality. After all, the promise of Kubernetes is to free you from the tyranny of your cloud provider, right? It&amp;rsquo;s only natural that the mentality of avoiding lock-in be applied to Kubernetes itself. The community has arrived on the colloquial term &amp;ldquo;vanilla Kubernetes&amp;rdquo; to describe an installation of the only the upstream components as released by the Kubernetes project.</description>
+    </item>
+    
+    <item>
+      <title>Jails, containers and their perceived security</title>
+      <link>https://jzelinskie.com/posts/jails-containers-and-their-perceived-security/</link>
+      <pubDate>Fri, 06 Oct 2017 00:00:00 -0400</pubDate>
+      
+      <guid>https://jzelinskie.com/posts/jails-containers-and-their-perceived-security/</guid>
+      <description>My scroll-wheel stops. Under my mouse, the typical HN comment:
+ Docker&amp;rsquo;s just about packaging! Containers aren&amp;rsquo;t secure! Unlike like jails *strokes unix beard*
+ The world&amp;rsquo;s full of interesting partial truths.
+Docker did clue a lot of developers into the Linux kernel&amp;rsquo;s isolation primitives by providing a compelling developer experience. It didn&amp;rsquo;t take long for others to catch on, though. In my semi-recent foray with FreeBSD, I noticed that managing jails with iocage doesn&amp;rsquo;t feel too far off managing containers with docker.</description>
+    </item>
+    
+  </channel>
+</rss>

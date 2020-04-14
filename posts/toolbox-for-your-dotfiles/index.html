@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta content='text/html; charset=utf-8' http-equiv='content-type' />
+
+  <title>A toolbox for your dotfiles - The Ramblings of Jimmy Zelinskie</title>
+  <meta content='A toolbox for your dotfiles - The Ramblings of Jimmy Zelinskie' property='title' />
+  <meta content='A toolbox for your dotfiles - The Ramblings of Jimmy Zelinskie' property='og:title' />
+
+
+<meta property="og:description" content="So you may have heard about this Docker™ thing. You know; it runs containers and all that jazz. You might think the container craze is only for developers that think this time they&rsquo;ve finally understood operations. You&rsquo;d be wrong however. I&rsquo;m going to explain a simple trick that I use often when sshing into a remote machine for some old school sysadmin work.
+Totally lost? If the title of this post seems unintelligible, fear not!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jzelinskie.com/posts/toolbox-for-your-dotfiles/" />
+
+
+<meta property="article:published_time" content="2019-11-26T00:00:00-04:00"/>
+
+<meta property="article:modified_time" content="2019-11-26T00:00:00-04:00"/>
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.69.0" />
+
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
+<style type="text/css">/*https://coolors.co/afd5aa-f0f2ef-a69f98-3d3d3d-8c6057*/
+:root {
+  --main-color: #8C6056; 
+  --secondary-color: #AFD5AA;
+  --logo-text-color: #fff;
+  --body-text-color: #3d3d3d;
+  --heading-text-color: #383838;
+  --background-color: #fff;
+}</style>
+<link href='/css/tachyons.min.css' rel="stylesheet">
+<link href='/css/styles.css' rel="stylesheet">
+
+
+<link rel="icon" 
+ 
+  href='/favicon.ico'
+
+type="image/x-icon"/>
+
+<link href='/feed.xml' rel="alternate" type="application/atom+xml" title="The Ramblings of Jimmy Zelinskie" />
+</head>
+<body class="global-font">
+  <nav class=" justify-between border-box pa3 pl3-l pr2-l mt1 mt0-ns" id="navbar">
+  <div class="flex">
+    <a class="f4 fw6 ttu no-underline dim bg-main-color pv1 ph2 br2" id="site-title" href='/' title="Home">The Ramblings of Jimmy Zelinskie</a>
+  </div>
+  
+</nav>
+  
+<main class="center mv4 content-width ph3">
+  <div class="f3 fw6 heading-color heading-font post-title">A toolbox for your dotfiles</div>
+  <p class="silver f6 mt1 mb4 post-meta">
+    <time>26 Nov 2019</time> 
+     | 
+    
+    
+    tags: [ <a href='/tags/containers' class="link silver">containers</a> <a href='/tags/coreos' class="link silver">coreos</a> <a href='/tags/docker' class="link silver">docker</a> <a href='/tags/kubernetes' class="link silver">kubernetes</a> <a href='/tags/shell' class="link silver">shell</a>  ]
+    
+  </p>
+  <div class="lh-copy post-content"><p>So you may have heard about this Docker™ thing.
+You know; it runs containers and all that jazz.
+You might think the container craze is only for developers that think this time they&rsquo;ve finally understood operations.
+You&rsquo;d be wrong however.
+I&rsquo;m going to explain a simple trick that I use often when <code>ssh</code>ing into a remote machine for some old school sysadmin work.</p>
+<h3 id="totally-lost">Totally lost?</h3>
+<p>If the title of this post seems unintelligible, fear not!
+Dotfiles are a slang term for command line tools&rsquo; configuration files that are scattered in your <code>$HOME</code> directory.
+As it turns out, they all happen to be prefixed by a dot as the result of unintentional behavior (<a href="https://web.archive.org/web/20190202170417/plus.google.com/+RobPikeTheHuman/posts/R58WgWwN9jp">pronounced bug</a>) in Unix.
+Lots of people store their dotfiles on GitHub so that they can easily synchronize them across machines.
+I&rsquo;ve publicly maintained mine <a href="http://github.com/jzelinskie/dotfiles">here</a> since 2013.</p>
+<p>As I&rsquo;ve moved back and forth between machines, I found that I&rsquo;d make my life significantly easier if I wrote a script for installing my dotfiles onto a new machine, so <a href="https://github.com/jzelinskie/dotfiles/blob/master/install.zsh">I did that</a>.
+There are lots of ways to manage your dotfiles; often mentioned is <a href="https://www.gnu.org/software/stow/">GNU Stow</a> instead of rolling your own script like I did.</p>
+<p>Ok, cool.
+The next prereq for this article is roughly understanding Linux containers.
+Oh boy, is this a big one, but don&rsquo;t sweat it because we don&rsquo;t need to know how deep the rabbithole goes for the sake of this demonstration.
+Containers are just isolated processes running on a Linux kernel.
+By isolated, I mean that they don&rsquo;t have access to the whole system, like you do.
+Docker, if you&rsquo;ve been living under a rock, is convenient way to create, distribute, and execute software as containers.</p>
+<h3 id="the-toolbox">The toolbox</h3>
+<p>In <a href="https://en.wikipedia.org/wiki/Container_Linux">CoreOS Linux</a>, we didn&rsquo;t have a package manager.
+The OS was meant to have only enough for you to run containers.
+This was a very nice property for reliable production deployments of software, but it left you with zero tools when it came time to debug something.
+The solution?
+The toolbox command.
+This was just a shell script that pulled down a Fedora image and ran the container with very little isolation.
+When you&rsquo;re in the toolbox, you could use tools installed on a Fedora system or <code>dnf</code> to temporarily install whatever you want.
+When you exited the toolbox, poof, all that Fedora was gone.</p>
+<p>Toolbox is an example of a BYOU: Bring Your Own Userspace.
+Using a Dockerfile to build a container image of your dotfiles means that you can take that userspace to any system.
+Wish that machine over there had your git/vim/zsh config?
+Just use the toolbox trick with the container image of your dotfiles.
+I use different flags to docker depending on how much access I want to the system, but a good start that&rsquo;s simple could be like so:</p>
+<pre><code>docker run --privileged=true -v /:/mnt -ti quay.io/jzelinskie/toolbox:latest zsh
+</code></pre><p>If you give yourself privileged you can do things like <code>nsenter</code> into other containers and muck around with them.
+In the past, I have actually been able to use this to debug some pretty nasty production incidents.</p>
+</div>
+</main>
+ 
+
+
+
+
+
+
+<div class="tl fixed list-pages lh-copy" id="contents-list"></div>
+
+
+
+<div class="pagination tc tr-l db fixed-l bottom-2-l right-2-l mb3 mb0-l">
+  
+<a id="scroll-to-top" class="f6 o-0 link br2 ph2 pv1 mb1 bg-main-color pointer" onclick="topFunction()" style="color: #fff; visibility: hidden; display: none; transition: opacity .5s, visibility .5s;" title="back to top">back to top</a>
+<br>
+  <p class="mb0 mt2">
+  <a href="https://jzelinskie.com/posts/oci-artifacts/">prev post</a>
+  <a href="https://jzelinskie.com/posts/p-what/">next post</a>
+  </p>
+</div>
+
+  <footer class="content-width mt0 mt5-l mb4 f6 center ph3 gray tc tl-l">
+  <hr class="dn db-l ml0-l gray w3"><br>
+  Powered by <a href="https://gohugo.io/" target="_blank" class="link gray dim">Hugo</a>, based on the <a href="https://github.com/lingxz/er" target="_blank" class="link gray dim">Er</a> theme. <br>
+  
+</footer>
+  
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<style>.is-active-link::before { background-color: var(--secondary-color); }</style>
+
+
+
+
+<script type="text/javascript">
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+  var currentScrollPos = window.pageYOffset;
+
+  
+  if (document.getElementById("tag-cloud") !== null) { 
+    if (prevScrollpos > currentScrollPos) { 
+      document.getElementById("tag-cloud").style.visibility = "visible";
+      document.getElementById("tag-cloud").style.opacity = "1";
+    } else {
+      document.getElementById("tag-cloud").style.visibility = "hidden";
+      document.getElementById("tag-cloud").style.opacity = "0";
+    }
+  }
+  
+
+  
+  if (document.body.scrollTop > 1000 || document.documentElement.scrollTop > 1000) {
+      document.getElementById("scroll-to-top").style.display = "inline";
+      document.getElementById("scroll-to-top").style.visibility = "visible";
+      document.getElementById("scroll-to-top").style.opacity = "1";
+  } else {
+      document.getElementById("scroll-to-top").style.visibility = "hidden";
+      document.getElementById("scroll-to-top").style.opacity = "0";
+  }
+  
+  prevScrollpos = currentScrollPos;
+}
+
+
+function topFunction() {
+  document.body.scrollTop = 0; 
+  document.documentElement.scrollTop = 0; 
+}
+
+
+
+
+
+
+if (document.getElementById("contents-list") !== null && document.getElementsByClassName("post-content").length !== 0) { 
+  tocbot.init({
+    
+    tocSelector: '#contents-list',
+    
+    contentSelector: '.post-content',
+    
+    headingSelector: 'h1, h2, h3',
+  });
+}
+
+
+</script>
+
+
+
+
+</body>
+</html>

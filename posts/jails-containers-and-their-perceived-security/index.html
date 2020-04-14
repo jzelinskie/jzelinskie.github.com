@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta content='text/html; charset=utf-8' http-equiv='content-type' />
+
+  <title>Jails, containers and their perceived security - The Ramblings of Jimmy Zelinskie</title>
+  <meta content='Jails, containers and their perceived security - The Ramblings of Jimmy Zelinskie' property='title' />
+  <meta content='Jails, containers and their perceived security - The Ramblings of Jimmy Zelinskie' property='og:title' />
+
+
+<meta property="og:description" content="My scroll-wheel stops. Under my mouse, the typical HN comment:
+ Docker&rsquo;s just about packaging! Containers aren&rsquo;t secure! Unlike like jails *strokes unix beard*
+ The world&rsquo;s full of interesting partial truths.
+Docker did clue a lot of developers into the Linux kernel&rsquo;s isolation primitives by providing a compelling developer experience. It didn&rsquo;t take long for others to catch on, though. In my semi-recent foray with FreeBSD, I noticed that managing jails with iocage doesn&rsquo;t feel too far off managing containers with docker." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jzelinskie.com/posts/jails-containers-and-their-perceived-security/" />
+
+
+<meta property="article:published_time" content="2017-10-06T00:00:00-04:00"/>
+
+<meta property="article:modified_time" content="2017-10-06T00:00:00-04:00"/>
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.69.0" />
+
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
+<style type="text/css">/*https://coolors.co/afd5aa-f0f2ef-a69f98-3d3d3d-8c6057*/
+:root {
+  --main-color: #8C6056; 
+  --secondary-color: #AFD5AA;
+  --logo-text-color: #fff;
+  --body-text-color: #3d3d3d;
+  --heading-text-color: #383838;
+  --background-color: #fff;
+}</style>
+<link href='/css/tachyons.min.css' rel="stylesheet">
+<link href='/css/styles.css' rel="stylesheet">
+
+
+<link rel="icon" 
+ 
+  href='/favicon.ico'
+
+type="image/x-icon"/>
+
+<link href='/feed.xml' rel="alternate" type="application/atom+xml" title="The Ramblings of Jimmy Zelinskie" />
+</head>
+<body class="global-font">
+  <nav class=" justify-between border-box pa3 pl3-l pr2-l mt1 mt0-ns" id="navbar">
+  <div class="flex">
+    <a class="f4 fw6 ttu no-underline dim bg-main-color pv1 ph2 br2" id="site-title" href='/' title="Home">The Ramblings of Jimmy Zelinskie</a>
+  </div>
+  
+</nav>
+  
+<main class="center mv4 content-width ph3">
+  <div class="f3 fw6 heading-color heading-font post-title">Jails, containers and their perceived security</div>
+  <p class="silver f6 mt1 mb4 post-meta">
+    <time>06 Oct 2017</time> 
+     | 
+    
+    
+    tags: [ <a href='/tags/containers' class="link silver">containers</a> <a href='/tags/docker' class="link silver">docker</a> <a href='/tags/freebsd' class="link silver">freebsd</a> <a href='/tags/hacker-news' class="link silver">hacker news</a>  ]
+    
+  </p>
+  <div class="lh-copy post-content"><p>My scroll-wheel stops.
+Under my mouse, the typical HN comment:</p>
+<blockquote>
+<p>Docker&rsquo;s just about packaging! Containers aren&rsquo;t secure! Unlike like jails *strokes unix beard*</p>
+</blockquote>
+<p>The world&rsquo;s full of interesting partial truths.</p>
+<p>Docker did clue a lot of developers into the Linux kernel&rsquo;s isolation primitives by providing a compelling developer experience.
+It didn&rsquo;t take long for others to catch on, though.
+In my semi-recent foray with FreeBSD, I noticed that managing jails with iocage doesn&rsquo;t feel too far off managing containers with docker.
+I&rsquo;m not going to dive into those details, though, because this post&rsquo;s title doesn&rsquo;t contain the words &ldquo;user experience&rdquo;.</p>
+<p>This perception of security when it comes to jails and containers is a common one.
+Understanding how someone could come to this conclusion requires a bit of history.
+Let&rsquo;s take a look at the abstract for &ldquo;Jails: Confining the omnipotent root&rdquo;, which is the original paper on FreeBSD jails:</p>
+<blockquote>
+<p>The traditional UNIX security model is simple but inexpressive.
+Adding fine-grained access control improves the expressiveness, but often dramatically increases both the cost of system management and implementation complexity.
+In environments with a more complex management model, with delegation of some management functions to parties under varying degrees of trust, the base UNIX model and most natural extensions are inappropriate at best.
+Where multiple mutually un-trusting parties are introduced, &lsquo;inappropriate&rsquo; rapidly transitions to &lsquo;nightmarish&rsquo;, especially with regards to data integrity and privacy protection.</p>
+<p>The FreeBSD &lsquo;Jail&rsquo; facility provides the ability to partition the operating system environment, while maintaining the simplicity of the UNIX &lsquo;root&rsquo; model.
+In Jail, users with privilege find that the scope of their requests is limited to the jail, allowing system administrators to delegate management capabilities for each virtual machine environment.
+Creating virtual machines in this manner has many potential uses; the most popular thus far has been for providing virtual machine services in Internet Service Provider environments.</p>
+</blockquote>
+<p>The first paragraph argues the infeasibility of adding many fine-grained controls for all the different aspects of isolation.
+The second argues for the compromise that led to the 200LOC patch that was initially jails in FreeBSD.
+Jails carved out what at the time seemed like a reasonable subset of functionality (but didn&rsquo;t feel the need to define all restrictions within the paper) and called it a day.</p>
+<p>In the usual fashion of ignoring the experiences of the BSDs, the isolation primitives that came to Linux, mostly in the form of cgroups and namespaces, attempted to add the very same fine-grained controls that the Jails paper argues against.
+This design decision compounded with being &ldquo;late to market&rdquo; leaves people with an impression: containers are less mature and playing a game of whack-a-mole.
+As time passes, though, this becomes less true and jails begin to show their age.</p>
+<p>Immediately obvious to anyone that has ran a jail: the networking stack isn&rsquo;t isolated.
+Nowadays, you can use VIMAGE for virtualized networking, but it&rsquo;s not totally stable.
+And, as one might expect, there are more subtle boundaries to jail isolation, too.
+System V IPC is shared across all jails, meaning you can clobber the shared memory of another jail.
+This is not a hypothetical problem and needs to be paid attention to when running PostgreSQL.
+However, now&rsquo;s not the time to build a comprehensive list of jail inadequacies; I&rsquo;m sure that can be found on a mailing list somewhere.</p>
+<p>Getting back to the point, it makes sense from a historical perspective that people would consider jails more secure than containers.
+The Linux kernel came after jails and gave the appearance of more opportunities for things to go wrong.
+No software ships finished and there absolutely were container escapes as it matured over the past few years.
+However, as we&rsquo;ve seen, there are an equal number of opportunities for things to go wrong with jails, too.
+And with less traction than Linux, many of them have been and will be there for years.</p>
+<h3 id="sources--interesting-follow-ups">Sources / Interesting Follow-Ups:</h3>
+<ul>
+<li><a href="https://docs.freebsd.org/44doc/papers/jail/jail.html">Jails: Confining the omnipotent root</a></li>
+<li>Any of Bryan Cantrill&rsquo;s talks about BSD and Solaris, but <a href="https://youtu.be/hgN8pCMLI2U">this video</a> in particular</li>
+<li>Eric Chiang&rsquo;s Containers from Scratch <a href="https://ericchiang.github.io/post/containers-from-scratch/">post</a> or <a href="https://youtu.be/wyqoi52k5jM">talk</a></li>
+</ul>
+</div>
+</main>
+ 
+
+
+
+
+
+
+<div class="tl fixed list-pages lh-copy" id="contents-list"></div>
+
+
+
+<div class="pagination tc tr-l db fixed-l bottom-2-l right-2-l mb3 mb0-l">
+  
+<a id="scroll-to-top" class="f6 o-0 link br2 ph2 pv1 mb1 bg-main-color pointer" onclick="topFunction()" style="color: #fff; visibility: hidden; display: none; transition: opacity .5s, visibility .5s;" title="back to top">back to top</a>
+<br>
+  <p class="mb0 mt2">
+  
+  <a href="https://jzelinskie.com/posts/dont-recommend-sourcing-shell-completion/">next post</a>
+  </p>
+</div>
+
+  <footer class="content-width mt0 mt5-l mb4 f6 center ph3 gray tc tl-l">
+  <hr class="dn db-l ml0-l gray w3"><br>
+  Powered by <a href="https://gohugo.io/" target="_blank" class="link gray dim">Hugo</a>, based on the <a href="https://github.com/lingxz/er" target="_blank" class="link gray dim">Er</a> theme. <br>
+  
+</footer>
+  
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<style>.is-active-link::before { background-color: var(--secondary-color); }</style>
+
+
+
+
+<script type="text/javascript">
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+  var currentScrollPos = window.pageYOffset;
+
+  
+  if (document.getElementById("tag-cloud") !== null) { 
+    if (prevScrollpos > currentScrollPos) { 
+      document.getElementById("tag-cloud").style.visibility = "visible";
+      document.getElementById("tag-cloud").style.opacity = "1";
+    } else {
+      document.getElementById("tag-cloud").style.visibility = "hidden";
+      document.getElementById("tag-cloud").style.opacity = "0";
+    }
+  }
+  
+
+  
+  if (document.body.scrollTop > 1000 || document.documentElement.scrollTop > 1000) {
+      document.getElementById("scroll-to-top").style.display = "inline";
+      document.getElementById("scroll-to-top").style.visibility = "visible";
+      document.getElementById("scroll-to-top").style.opacity = "1";
+  } else {
+      document.getElementById("scroll-to-top").style.visibility = "hidden";
+      document.getElementById("scroll-to-top").style.opacity = "0";
+  }
+  
+  prevScrollpos = currentScrollPos;
+}
+
+
+function topFunction() {
+  document.body.scrollTop = 0; 
+  document.documentElement.scrollTop = 0; 
+}
+
+
+
+
+
+
+if (document.getElementById("contents-list") !== null && document.getElementsByClassName("post-content").length !== 0) { 
+  tocbot.init({
+    
+    tocSelector: '#contents-list',
+    
+    contentSelector: '.post-content',
+    
+    headingSelector: 'h1, h2, h3',
+  });
+}
+
+
+</script>
+
+
+
+
+</body>
+</html>
