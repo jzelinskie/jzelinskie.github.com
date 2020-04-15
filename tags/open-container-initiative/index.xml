@@ -1,25 +1,2 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>open container initiative on The Ramblings of Jimmy Zelinskie</title>
-    <link>https://jzelinskie.com/tags/open-container-initiative/</link>
-    <description>Recent content in open container initiative on The Ramblings of Jimmy Zelinskie</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 22 Aug 2019 00:00:00 -0400</lastBuildDate>
-    
-	<atom:link href="https://jzelinskie.com/tags/open-container-initiative/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>OCI Artifacts</title>
-      <link>https://jzelinskie.com/posts/oci-artifacts/</link>
-      <pubDate>Thu, 22 Aug 2019 00:00:00 -0400</pubDate>
-      
-      <guid>https://jzelinskie.com/posts/oci-artifacts/</guid>
-      <description>In 2016, CoreOS hired Antoine Legrand (@ant31). Antoine is an incredible engineer and a huge asset to the Kubernetes community; you may recognize him from many contributions, but most people probably would be familiar with a little project he started called Kubespray.
-The first time I met Antoine, he had hacked together a demo of packaging up and storing Kubernetes resources into Quay. A fair bit after the initial demo, we decided it was worth pursuing for realsies and I helped Antoine through the process of making his demo a production grade feature for all Quay users.</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>open container initiative on jzelinskie.com</title><link>https://jzelinskie.com/tags/open-container-initiative/</link><description>Recent content in open container initiative on jzelinskie.com</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Copyright © Jimmy Zelinskie 2020</copyright><lastBuildDate>Thu, 22 Aug 2019 00:00:00 -0400</lastBuildDate><atom:link href="https://jzelinskie.com/tags/open-container-initiative/index.xml" rel="self" type="application/rss+xml"/><item><title>OCI Artifacts</title><link>https://jzelinskie.com/posts/oci-artifacts/</link><pubDate>Thu, 22 Aug 2019 00:00:00 -0400</pubDate><guid>https://jzelinskie.com/posts/oci-artifacts/</guid><description>In 2016, CoreOS hired Antoine Legrand (@ant31). Antoine is an incredible engineer and a huge asset to the Kubernetes community; you may recognize him from many contributions, but most people probably would be familiar with a little project he started called Kubespray.
+The first time I met Antoine, he had hacked together a demo of packaging up and storing Kubernetes resources into Quay. A fair bit after the initial demo, we decided it was worth pursuing for realsies and I helped Antoine through the process of making his demo a production grade feature for all Quay users.</description></item></channel></rss>

@@ -1,25 +1,2 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>operator framework on The Ramblings of Jimmy Zelinskie</title>
-    <link>https://jzelinskie.com/tags/operator-framework/</link>
-    <description>Recent content in operator framework on The Ramblings of Jimmy Zelinskie</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 06 Aug 2018 00:00:00 -0400</lastBuildDate>
-    
-	<atom:link href="https://jzelinskie.com/tags/operator-framework/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Operator Lifecycle Manager</title>
-      <link>https://jzelinskie.com/posts/olm/</link>
-      <pubDate>Mon, 06 Aug 2018 00:00:00 -0400</pubDate>
-      
-      <guid>https://jzelinskie.com/posts/olm/</guid>
-      <description>At KubeCon EU 2018, Red Hat eagerly announced the open sourcing of the Operator Framework. There&amp;rsquo;s a lot of buzzword bingo these days, but being someone who helped originally pioneer the concept at CoreOS, I feel I can give a fair definition:
- An Operator is a Kubernetes pattern that is extending the Kubernetes control plane with a custom Controller and Custom Resource Definitions that add additional operational knowledge of an application.</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>operator framework on jzelinskie.com</title><link>https://jzelinskie.com/tags/operator-framework/</link><description>Recent content in operator framework on jzelinskie.com</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Copyright © Jimmy Zelinskie 2020</copyright><lastBuildDate>Mon, 06 Aug 2018 00:00:00 -0400</lastBuildDate><atom:link href="https://jzelinskie.com/tags/operator-framework/index.xml" rel="self" type="application/rss+xml"/><item><title>Operator Lifecycle Manager</title><link>https://jzelinskie.com/posts/olm/</link><pubDate>Mon, 06 Aug 2018 00:00:00 -0400</pubDate><guid>https://jzelinskie.com/posts/olm/</guid><description>At KubeCon EU 2018, Red Hat eagerly announced the open sourcing of the Operator Framework. There&amp;rsquo;s a lot of buzzword bingo these days, but being someone who helped originally pioneer the concept at CoreOS, I feel I can give a fair definition:
+An Operator is a Kubernetes pattern that is extending the Kubernetes control plane with a custom Controller and Custom Resource Definitions that add additional operational knowledge of an application.</description></item></channel></rss>
