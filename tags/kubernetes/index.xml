@@ -1,5 +1,52 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>kubernetes on jzelinskie</title><link>https://jzelinskie.com/tags/kubernetes/</link><description>Recent content in kubernetes on jzelinskie</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Copyright © Jimmy Zelinskie 2020</copyright><lastBuildDate>Tue, 26 Nov 2019 00:00:00 -0400</lastBuildDate><atom:link href="https://jzelinskie.com/tags/kubernetes/index.xml" rel="self" type="application/rss+xml"/><item><title>A toolbox for your dotfiles</title><link>https://jzelinskie.com/posts/toolbox-for-your-dotfiles/</link><pubDate>Tue, 26 Nov 2019 00:00:00 -0400</pubDate><guid>https://jzelinskie.com/posts/toolbox-for-your-dotfiles/</guid><description>So you may have heard about this Docker™ thing. You know; it runs containers and all that jazz. You might think the container craze is only for developers that think this time they&amp;rsquo;ve finally understood operations. You&amp;rsquo;d be wrong however. I&amp;rsquo;m going to explain a simple trick that I use often when sshing into a remote machine for some old school sysadmin work.
-Totally lost? If the title of this post seems unintelligible, fear not!</description></item><item><title>OCI Artifacts</title><link>https://jzelinskie.com/posts/oci-artifacts/</link><pubDate>Thu, 22 Aug 2019 00:00:00 -0400</pubDate><guid>https://jzelinskie.com/posts/oci-artifacts/</guid><description>In 2016, CoreOS hired Antoine Legrand (@ant31). Antoine is an incredible engineer and a huge asset to the Kubernetes community; you may recognize him from many contributions, but most people probably would be familiar with a little project he started called Kubespray.
-The first time I met Antoine, he had hacked together a demo of packaging up and storing Kubernetes resources into Quay. A fair bit after the initial demo, we decided it was worth pursuing for realsies and I helped Antoine through the process of making his demo a production grade feature for all Quay users.</description></item><item><title>Operator Lifecycle Manager</title><link>https://jzelinskie.com/posts/olm/</link><pubDate>Mon, 06 Aug 2018 00:00:00 -0400</pubDate><guid>https://jzelinskie.com/posts/olm/</guid><description>At KubeCon EU 2018, Red Hat eagerly announced the open sourcing of the Operator Framework. There&amp;rsquo;s a lot of buzzword bingo these days, but being someone who helped originally pioneer the concept at CoreOS, I feel I can give a fair definition:
-An Operator is a Kubernetes pattern that is extending the Kubernetes control plane with a custom Controller and Custom Resource Definitions that add additional operational knowledge of an application.</description></item><item><title>You're not running vanilla Kubernetes</title><link>https://jzelinskie.com/posts/youre-not-running-vanilla-kubernetes/</link><pubDate>Sun, 06 May 2018 00:00:00 -0400</pubDate><guid>https://jzelinskie.com/posts/youre-not-running-vanilla-kubernetes/</guid><description>Stop pretending it isn&amp;rsquo;t your own clumsy distribution. Seriously.
-Haven&amp;rsquo;t heard of &amp;ldquo;vanilla Kubernetes&amp;rdquo;? In the ever competitive age of selling Kubernetes, there seems to be a trend towards promising vendor neutrality. After all, the promise of Kubernetes is to free you from the tyranny of your cloud provider, right? It&amp;rsquo;s only natural that the mentality of avoiding lock-in be applied to Kubernetes itself. The community has arrived on the colloquial term &amp;ldquo;vanilla Kubernetes&amp;rdquo; to describe an installation of the only the upstream components as released by the Kubernetes project.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>kubernetes on jzelinskie</title>
+    <link>https://jzelinskie.com/tags/kubernetes/</link>
+    <description>Recent content in kubernetes on jzelinskie</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright © Jimmy Zelinskie 2020</copyright>
+    <lastBuildDate>Tue, 26 Nov 2019 00:00:00 -0400</lastBuildDate><atom:link href="https://jzelinskie.com/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A toolbox for your dotfiles</title>
+      <link>https://jzelinskie.com/posts/toolbox-for-your-dotfiles/</link>
+      <pubDate>Tue, 26 Nov 2019 00:00:00 -0400</pubDate>
+      
+      <guid>https://jzelinskie.com/posts/toolbox-for-your-dotfiles/</guid>
+      <description>So you may have heard about this Docker™ thing. You know; it runs containers and all that jazz. You might think the container craze is only for developers that think this time they&amp;rsquo;ve finally understood operations. You&amp;rsquo;d be wrong however. I&amp;rsquo;m going to explain a simple trick that I use often when sshing into a remote machine for some old school sysadmin work.
+Totally lost? If the title of this post seems unintelligible, fear not!</description>
+    </item>
+    
+    <item>
+      <title>OCI Artifacts</title>
+      <link>https://jzelinskie.com/posts/oci-artifacts/</link>
+      <pubDate>Thu, 22 Aug 2019 00:00:00 -0400</pubDate>
+      
+      <guid>https://jzelinskie.com/posts/oci-artifacts/</guid>
+      <description>In 2016, CoreOS hired Antoine Legrand (@ant31). Antoine is an incredible engineer and a huge asset to the Kubernetes community; you may recognize him from many contributions, but most people probably would be familiar with a little project he started called Kubespray.
+The first time I met Antoine, he had hacked together a demo of packaging up and storing Kubernetes resources into Quay. A fair bit after the initial demo, we decided it was worth pursuing for realsies and I helped Antoine through the process of making his demo a production grade feature for all Quay users.</description>
+    </item>
+    
+    <item>
+      <title>Operator Lifecycle Manager</title>
+      <link>https://jzelinskie.com/posts/olm/</link>
+      <pubDate>Mon, 06 Aug 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://jzelinskie.com/posts/olm/</guid>
+      <description>At KubeCon EU 2018, Red Hat eagerly announced the open sourcing of the Operator Framework. There&amp;rsquo;s a lot of buzzword bingo these days, but being someone who helped originally pioneer the concept at CoreOS, I feel I can give a fair definition:
+ An Operator is a Kubernetes pattern that is extending the Kubernetes control plane with a custom Controller and Custom Resource Definitions that add additional operational knowledge of an application.</description>
+    </item>
+    
+    <item>
+      <title>You&#39;re not running vanilla Kubernetes</title>
+      <link>https://jzelinskie.com/posts/youre-not-running-vanilla-kubernetes/</link>
+      <pubDate>Sun, 06 May 2018 00:00:00 -0400</pubDate>
+      
+      <guid>https://jzelinskie.com/posts/youre-not-running-vanilla-kubernetes/</guid>
+      <description>Stop pretending it isn&amp;rsquo;t your own clumsy distribution. Seriously.
+ Haven&amp;rsquo;t heard of &amp;ldquo;vanilla Kubernetes&amp;rdquo;? In the ever competitive age of selling Kubernetes, there seems to be a trend towards promising vendor neutrality. After all, the promise of Kubernetes is to free you from the tyranny of your cloud provider, right? It&amp;rsquo;s only natural that the mentality of avoiding lock-in be applied to Kubernetes itself. The community has arrived on the colloquial term &amp;ldquo;vanilla Kubernetes&amp;rdquo; to describe an installation of the only the upstream components as released by the Kubernetes project.</description>
+    </item>
+    
+  </channel>
+</rss>

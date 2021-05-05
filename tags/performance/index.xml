@@ -1,2 +1,22 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>performance on jzelinskie</title><link>https://jzelinskie.com/tags/performance/</link><description>Recent content in performance on jzelinskie</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Copyright © Jimmy Zelinskie 2020</copyright><lastBuildDate>Wed, 08 Nov 2017 00:00:00 -0400</lastBuildDate><atom:link href="https://jzelinskie.com/tags/performance/index.xml" rel="self" type="application/rss+xml"/><item><title>Please, don't recommend sourcing shell completion</title><link>https://jzelinskie.com/posts/dont-recommend-sourcing-shell-completion/</link><pubDate>Wed, 08 Nov 2017 00:00:00 -0400</pubDate><guid>https://jzelinskie.com/posts/dont-recommend-sourcing-shell-completion/</guid><description>I recently got sick of opening a new tab and waiting seconds before my shell prompt showed up. In order to prevent my future self from wasting valuable seconds of my life, I went through the trouble of profiling my zsh configuration. After extensive use of zprof, I determined my bottleneck: sourcing command completion files, but only the ones that executed a program to get their contents.
-Feast your eyes on the marvel that is modern software engineering:</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>performance on jzelinskie</title>
+    <link>https://jzelinskie.com/tags/performance/</link>
+    <description>Recent content in performance on jzelinskie</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright © Jimmy Zelinskie 2020</copyright>
+    <lastBuildDate>Wed, 08 Nov 2017 00:00:00 -0400</lastBuildDate><atom:link href="https://jzelinskie.com/tags/performance/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Please, don&#39;t recommend sourcing shell completion</title>
+      <link>https://jzelinskie.com/posts/dont-recommend-sourcing-shell-completion/</link>
+      <pubDate>Wed, 08 Nov 2017 00:00:00 -0400</pubDate>
+      
+      <guid>https://jzelinskie.com/posts/dont-recommend-sourcing-shell-completion/</guid>
+      <description>I recently got sick of opening a new tab and waiting seconds before my shell prompt showed up. In order to prevent my future self from wasting valuable seconds of my life, I went through the trouble of profiling my zsh configuration. After extensive use of zprof, I determined my bottleneck: sourcing command completion files, but only the ones that executed a program to get their contents.
+Feast your eyes on the marvel that is modern software engineering:</description>
+    </item>
+    
+  </channel>
+</rss>

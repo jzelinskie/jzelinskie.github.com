@@ -1,38 +1,263 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta charset=utf-8><title>Identity Is Not the Foundation of Permission Systems - jzelinskie</title><meta content="Identity Is Not the Foundation of Permission Systems - jzelinskie" property="title"><meta content="Identity Is Not the Foundation of Permission Systems - jzelinskie" property="og:title"><meta property="og:description" content="Have you ever chatted with a fellow developer about an application&rsquo;s permission system and quickly realized you&rsquo;re also talking about its login system? It&rsquo;s rather unfortunate, but these two entirely distinct systems often get merged together simply because their formal names start with the same four letters: AUTH.
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta content='text/html; charset=utf-8' http-equiv='content-type' />
+
+  <title>Identity Is Not the Foundation of Permission Systems - jzelinskie</title>
+  <meta content='Identity Is Not the Foundation of Permission Systems - jzelinskie' property='title' />
+  <meta content='Identity Is Not the Foundation of Permission Systems - jzelinskie' property='og:title' />
+
+
+<meta property="og:description" content="This post was originally published on the Authzed Blog.
+Have you ever chatted with a fellow developer about an application&rsquo;s permission system and quickly realized you&rsquo;re also talking about its login system? It&rsquo;s rather unfortunate, but these two entirely distinct systems often get merged together simply because their formal names start with the same four letters: AUTH.
  Authentication (&ldquo;authN&rdquo; or &ldquo;identity&rdquo;) is who you are
-Authorization (&ldquo;authZ&rdquo; or &ldquo;permissions&rdquo; or &ldquo;access control&rdquo;) is what you&rsquo;re allowed to do"><meta property="og:type" content="article"><meta property="og:url" content="https://jzelinskie.com/posts/identity-isnt-the-foundation/"><meta property="article:published_time" content="2021-03-03T00:00:00-04:00"><meta property="article:modified_time" content="2021-03-03T00:00:00-04:00"><meta name=generator content="Hugo 0.81.0"><link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel=stylesheet><style type=text/css>:root{--main-color:#2c3632;--secondary-color:#899593;--body-text-color:#030303;--heading-text-color:#030303}</style><link href=/css/tachyons.min.css rel=stylesheet><link href=/css/styles.css rel=stylesheet><link rel=icon href=/images/favicon.png type=image/x-icon><link href=/feed.xml rel=alternate type=application/atom+xml title=jzelinskie></head><body class=global-font><nav class="flex-ns justify-between border-box pa3 pl3-l pr2-l mt1 mt0-ns" id=navbar><div class=flex><a class="f4 fw6 no-underline dim main-color pv1 ph2 br2" id=site-title href=/ title=Home><span class=secondary-color>~</span>jzelinskie</a></div><div class="flex-ns mt2 mt0-ns pv1"><a class="link dim dark-gray f6 dib mr2 mr3-l ttu tracked" href=/posts title=posts>posts</a>
-<a class="link dim dark-gray f6 dib mr2 mr3-l ttu tracked" href=/setup title=setup>setup</a>
-<a class="link dim dark-gray f6 dib mr2 mr3-l ttu tracked" href=/whoami title=whoami>whoami</a></div></nav><main class="center mv4 content-width ph3"><h1 class="f2 fw6 heading-font">Identity Is Not the Foundation of Permission Systems</h1><p class="f5 mt1 mb4" id=post-meta><time class=silver>03 Mar 2021</time> ∘
-<a href=/categories/programming class="link black">programming</a> ∘
-<a href=/tags/authentication class="link silver">#authentication</a> <a href=/tags/authorization class="link silver">#authorization</a> <a href=/tags/security class="link silver">#security</a> <a href=/tags/crosspost class="link silver">#crosspost</a></p><div class="lh-copy post-content"><p>Have you ever chatted with a fellow developer about an application&rsquo;s permission system and quickly realized you&rsquo;re also talking about its login system?
-It&rsquo;s rather unfortunate, but these two entirely distinct systems often get merged together simply because their formal names start with the same four letters: <strong>AUTH</strong>.</p><blockquote><p>Authentication (&ldquo;authN&rdquo; or &ldquo;identity&rdquo;) is who you are</p><p>Authorization (&ldquo;authZ&rdquo; or &ldquo;permissions&rdquo; or &ldquo;access control&rdquo;) is what you&rsquo;re allowed to do</p></blockquote><p>This is no amateur mistake.
-Even <a href=https://docs.djangoproject.com/en/3.1/ref/contrib/auth/>major web frameworks</a> bundle these concepts together out of convenience.</p><p>Because so many applications need to support users from inception, identity becomes vital for developers to understand on day one.
+Authorization (&ldquo;authZ&rdquo; or &ldquo;permissions&rdquo; or &ldquo;access control&rdquo;) is what you&rsquo;re allowed to do" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jzelinskie.com/posts/identity-isnt-the-foundation/" />
+
+
+<meta property="article:published_time" content="2021-03-03T00:00:00-04:00"/>
+
+<meta property="article:modified_time" content="2021-03-03T00:00:00-04:00"/>
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.82.1" />
+
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
+<style type="text/css">/* https://colorpalettes.net/color-palette-4199/ */
+:root {
+  --main-color: #2c3632;
+  --secondary-color: #899593;
+  --body-text-color: #030303;
+  --heading-text-color: #030303;
+}
+</style>
+<link href='/css/tachyons.min.css' rel="stylesheet">
+<link href='/css/styles.css' rel="stylesheet">
+
+
+<link rel="icon" 
+
+  href="/images/favicon.png" 
+
+type="image/x-icon"/>
+
+<link href='/feed.xml' rel="alternate" type="application/atom+xml" title="jzelinskie" />
+
+</head>
+<body class="global-font">
+  <nav class=" flex-ns justify-between border-box pa3 pl3-l pr2-l mt1 mt0-ns" id="navbar">
+  <div class="flex">
+    <a class="f4 fw6 no-underline dim main-color pv1 ph2 br2" id="site-title" href='/' title="Home"><span class="secondary-color">~</span>jzelinskie</a>
+  </div>
+  
+  <div class=" flex-ns mt2 mt0-ns pv1">
+    
+      <a class="link dim dark-gray f6 dib mr2 mr3-l ttu tracked" href='/posts' title="posts">posts</a>
+    
+      <a class="link dim dark-gray f6 dib mr2 mr3-l ttu tracked" href='/setup' title="setup">setup</a>
+    
+      <a class="link dim dark-gray f6 dib mr2 mr3-l ttu tracked" href='/whoami' title="whoami">whoami</a>
+    
+  </div>
+  
+</nav>
+
+  
+<main class="center mv4 content-width ph3">
+  <h1 class="f2 fw6 heading-font">Identity Is Not the Foundation of Permission Systems</h1>
+  
+  <p class="f5 mt1 mb4" id="post-meta">
+    <time class="silver">03 Mar 2021</time> ∘ 
+     
+    
+    <a href='/categories/programming' class="link black">programming</a>  ∘
+    
+    
+    <a href='/tags/authentication' class="link silver">#authentication</a> <a href='/tags/authorization' class="link silver">#authorization</a> <a href='/tags/security' class="link silver">#security</a> <a href='/tags/crosspost' class="link silver">#crosspost</a> 
+    
+  </p>
+  
+  <div class="lh-copy post-content"><p>This post was originally published on the <a href="https://authzed.com/blog/identity-isnt-the-foundation/">Authzed Blog</a>.</p>
+<p>Have you ever chatted with a fellow developer about an application&rsquo;s permission system and quickly realized you&rsquo;re also talking about its login system?
+It&rsquo;s rather unfortunate, but these two entirely distinct systems often get merged together simply because their formal names start with the same four letters: <strong>AUTH</strong>.</p>
+<blockquote>
+<p>Authentication (&ldquo;authN&rdquo; or &ldquo;identity&rdquo;) is who you are</p>
+<p>Authorization (&ldquo;authZ&rdquo; or &ldquo;permissions&rdquo; or &ldquo;access control&rdquo;) is what you&rsquo;re allowed to do</p>
+</blockquote>
+<p>This is no amateur mistake.
+Even <a href="https://docs.djangoproject.com/en/3.1/ref/contrib/auth/">major web frameworks</a> bundle these concepts together out of convenience.</p>
+<p>Because so many applications need to support users from inception, identity becomes vital for developers to understand on day one.
 However, building a robust permission system can usually be deferred until users start demanding it.
-When requests for fine grained access control inevitably start pouring in, they often come alongside feature requests for integrations with various <a href=https://en.wikipedia.org/wiki/Identity_provider>Identity Providers</a>.
+When requests for fine grained access control inevitably start pouring in, they often come alongside feature requests for integrations with various <a href="https://en.wikipedia.org/wiki/Identity_provider">Identity Providers</a>.
 This makes it seem natural to assume that the permission systems should be direct integrations with the primitives that the Identity Providers expose.
-However, the <em>authorization</em> functionality that is often found in most <em>authentication</em> systems is generally overly simplistic and the resulting permission systems that are built on top are usually fragile and error prone.</p><p>This is the last thing you want to hear when discussing software that determines whether or not a user has access to sensitive content.
-If you&rsquo;re thinking &ldquo;that&rsquo;s only if you work in a domain, like healthcare or government, where you know sophisticated access control is required&rdquo;, you should consider that even in simple use cases you&rsquo;ll likely be iterating on your design, which gives you ample opportunities to introduce bugs that manifest themselves as security vulnerabilities.</p><h2 id=ldap-flips-conways-law-on-its-head>LDAP flips Conway&rsquo;s Law on its head</h2><blockquote><p>Any organization that designs a system (defined broadly) will produce a design whose structure is a copy of the organization&rsquo;s communication structure.</p><p>— Melvin E. Conway</p></blockquote><p>Conway&rsquo;s Law describes how the architecture of software is a reflection of the organization of the people that built it.
-For example, software components that are decoupled, but belong to the same application are often separate only because they were built by separate teams.</p><p>When permission systems are based on Identity Providers, this law is entirely reversed.</p><p>If an organization of people cannot use any software because everything, for example, only supports a structure that can be modeled by <a href=https://ldapwiki.com/wiki/Groups%20Are%20Bad>LDAP Groups</a>, it forces the people to reorganize into something that can be modeled by LDAP Groups.</p><p>This may be viable for organizations like businesses (the reorgs will continue until morale improves!), but obviously not all software can demand that their users reorganize just to use their product.</p><h2 id=groups-scopes-claims-dont-answer-the-question>Groups, Scopes, Claims don&rsquo;t answer the question</h2><p>LDAP Groups, OAuth Scopes, SAML Claims, JWT Claims: all a rose by any other name.
-These concepts all represent the same kind of data: an <em><a href=https://docs.authzed.com/authz/abac>attribute</a></em> that is stored on a user, indicating something about that user.
+However, the <em>authorization</em> functionality that is often found in most <em>authentication</em> systems is generally overly simplistic and the resulting permission systems that are built on top are usually fragile and error prone.</p>
+<p>This is the last thing you want to hear when discussing software that determines whether or not a user has access to sensitive content.
+If you&rsquo;re thinking &ldquo;that&rsquo;s only if you work in a domain, like healthcare or government, where you know sophisticated access control is required&rdquo;, you should consider that even in simple use cases you&rsquo;ll likely be iterating on your design, which gives you ample opportunities to introduce bugs that manifest themselves as security vulnerabilities.</p>
+<h2 id="ldap-flips-conways-law-on-its-head">LDAP flips Conway&rsquo;s Law on its head</h2>
+<blockquote>
+<p>Any organization that designs a system (defined broadly) will produce a design whose structure is a copy of the organization&rsquo;s communication structure.</p>
+<p>— Melvin E. Conway</p>
+</blockquote>
+<p>Conway&rsquo;s Law describes how the architecture of software is a reflection of the organization of the people that built it.
+For example, software components that are decoupled, but belong to the same application are often separate only because they were built by separate teams.</p>
+<p>When permission systems are based on Identity Providers, this law is entirely reversed.</p>
+<p>If an organization of people cannot use any software because everything, for example, only supports a structure that can be modeled by <a href="https://ldapwiki.com/wiki/Groups%20Are%20Bad">LDAP Groups</a>, it forces the people to reorganize into something that can be modeled by LDAP Groups.</p>
+<p>This may be viable for organizations like businesses (the reorgs will continue until morale improves!), but obviously not all software can demand that their users reorganize just to use their product.</p>
+<h2 id="groups-scopes-claims-dont-answer-the-question">Groups, Scopes, Claims don&rsquo;t answer the question</h2>
+<p>LDAP Groups, OAuth Scopes, SAML Claims, JWT Claims: all a rose by any other name.
+These concepts all represent the same kind of data: an <em><a href="https://docs.authzed.com/authz/abac">attribute</a></em> that is stored on a user, indicating something about that user.
 Attributes are useful: they can provide context about a user (such as an object they can access, or a role that the user has), which makes such a system, in theory, a reasonable solution to determining what a user can access.
-However, in practice, developers realize that this isn&rsquo;t quite so obvious once they have started working with this data.</p><p>Software that relies on these concepts for permissions all struggle in the same core principle: how they choose to interpret and apply significance to the presence of an attribute:</p><ul><li>If a user has both the &ldquo;admin&rdquo; and the &ldquo;banned&rdquo; attribute, what is the correct action?</li><li>Should admins be able to ignore bans or was the employee just fired from the company?</li><li>What about attributes that imply other attributes?</li><li>Does being &ldquo;admin&rdquo; also imply &ldquo;write&rdquo; access to this resource?</li></ul><p>You can see how this quickly gets out of hand.
-And once it&rsquo;s been decided how attributes should be properly interpreted, it&rsquo;s time to audit every other application and make sure they interpret the attribute the exact same way or else you might have a security problem!</p><p>Now, there is nothing fundamentally wrong with attribute-based permission systems.
-In fact, mature permission systems are almost always a fusion of ideas from <a href=https://docs.authzed.com/authz/what-else>various models</a> based on the requirements at hand.
+However, in practice, developers realize that this isn&rsquo;t quite so obvious once they have started working with this data.</p>
+<p>Software that relies on these concepts for permissions all struggle in the same core principle: how they choose to interpret and apply significance to the presence of an attribute:</p>
+<ul>
+<li>If a user has both the &ldquo;admin&rdquo; and the &ldquo;banned&rdquo; attribute, what is the correct action?</li>
+<li>Should admins be able to ignore bans or was the employee just fired from the company?</li>
+<li>What about attributes that imply other attributes?</li>
+<li>Does being &ldquo;admin&rdquo; also imply &ldquo;write&rdquo; access to this resource?</li>
+</ul>
+<p>You can see how this quickly gets out of hand.
+And once it&rsquo;s been decided how attributes should be properly interpreted, it&rsquo;s time to audit every other application and make sure they interpret the attribute the exact same way or else you might have a security problem!</p>
+<p>Now, there is nothing fundamentally wrong with attribute-based permission systems.
+In fact, mature permission systems are almost always a fusion of ideas from <a href="https://docs.authzed.com/authz/what-else">various models</a> based on the requirements at hand.
 In this case, how the attributes from <em>authentication</em> systems manifest themselves when they become the foundation of a permission system is the problem.
 This is because attributes can only state facts about an identity.
-But what we really need is the answer to the question &ldquo;can this subject take this action on this resource?&rdquo;.</p><h2 id=permissions-are-about-your-relationships>Permissions are about your relationships</h2><p>While identity is required to ask the question &ldquo;Does this <code>subject</code> have permission to do this <code>action</code> to this <code>object</code>?&rdquo;, it is not the <em>only</em> variable.
+But what we really need is the answer to the question &ldquo;can this subject take this action on this resource?&rdquo;.</p>
+<h2 id="permissions-are-about-your-relationships">Permissions are about your relationships</h2>
+<p>While identity is required to ask the question &ldquo;Does this <code>subject</code> have permission to do this <code>action</code> to this <code>object</code>?&rdquo;, it is not the <em>only</em> variable.
 Identity sits alongside the <em>action</em> and the <em>object</em>.
-That&rsquo;s all well and good, but how <em>should</em> one arrive at the answer to one of these questions?</p><p>A great place to start is to crack open a social network like Facebook.
+That&rsquo;s all well and good, but how <em>should</em> one arrive at the answer to one of these questions?</p>
+<p>A great place to start is to crack open a social network like Facebook.
 Go review (and probably update) your privacy settings; you&rsquo;ll find a variety of configurations for sharing your content like friends-only or friends-of-friends.
 When you change that setting, you&rsquo;ll find that it applies instantaneously; there is no migration happening in their backend where thousands of users are granted the attribute to view your content.
 This is because Facebook is designed to store and query <em>relationships</em> between their users.
-Facebook is powered by a social <em>graph</em>.</p><p>If we lean on the idea of modeling relationships, like Facebook does, you can change the question from &ldquo;Does X have permission to do Y to Z?&rdquo; into &ldquo;Does X have the relationship Y with Z?&rdquo;.
+Facebook is powered by a social <em>graph</em>.</p>
+<p>If we lean on the idea of modeling relationships, like Facebook does, you can change the question from &ldquo;Does X have permission to do Y to Z?&rdquo; into &ldquo;Does X have the relationship Y with Z?&rdquo;.
 For example, &ldquo;Does User #123 have the Write relationship with Document #456?&rdquo;.
 Recall the example from reading attributes where the application has to decide if the &ldquo;admin&rdquo; attribute also implies the &ldquo;write&rdquo; attribute.
-In a relationship-based model, this problem disappears because these are just more relationships:</p><p><img src=/images/posts/identity-isnt-the-foundation/admin.png alt="A graph displaying a path from a document to a user by passing through a write relationship and then an admin relationship." title="Users with the Admin relationship transitively have the Write relationship"></p><p>The beauty of a relationship-based system is that the application doesn&rsquo;t care <em>how</em> the user got to the Write relationship.
+In a relationship-based model, this problem disappears because these are just more relationships:</p>
+<p><img src="/images/posts/identity-isnt-the-foundation/admin.png" alt="A graph displaying a path from a document to a user by passing through a write relationship and then an admin relationship." title="Users with the Admin relationship transitively have the Write relationship"></p>
+<p>The beauty of a relationship-based system is that the application doesn&rsquo;t care <em>how</em> the user got to the Write relationship.
 Maybe they&rsquo;re the user that created the document.
 Maybe the user had some kind of admin relationship that gives them the ability to do everything.
-It doesn&rsquo;t matter as long as there is some path through our relationship graph from the user to the Write relationship on the document.</p><p><img src=/images/posts/identity-isnt-the-foundation/who%20cares.png alt="A graph displaying a path from a document to a user by passing through the write relationship and then many unknown and complex relationships." title="Who cares how the user has the Write relationship?"></p><p>This means that relationships can change (like changing your privacy settings) and applications will not need to have their code rewritten because there was no longer anything left open to interpretation.</p><h2 id=restoring-conways-law>Restoring Conway&rsquo;s Law</h2><p>By realizing that permissions systems are fundamentally coupled to the <em>relationships</em> between people and objects in our software, we can build systems that mimic the way people naturally organize their world to be most effective.
-This not only empowers the people consuming the software, but leads developers to arrive at more robust permission systems that can withstand changes to the organization.</p><p>If you&rsquo;re left wondering what a permission system based on relationships looks like in practice, <a href=https://authzed.com>Authzed</a> is exactly that!
+It doesn&rsquo;t matter as long as there is some path through our relationship graph from the user to the Write relationship on the document.</p>
+<p><img src="/images/posts/identity-isnt-the-foundation/who%20cares.png" alt="A graph displaying a path from a document to a user by passing through the write relationship and then many unknown and complex relationships." title="Who cares how the user has the Write relationship?"></p>
+<p>This means that relationships can change (like changing your privacy settings) and applications will not need to have their code rewritten because there was no longer anything left open to interpretation.</p>
+<h2 id="restoring-conways-law">Restoring Conway&rsquo;s Law</h2>
+<p>By realizing that permissions systems are fundamentally coupled to the <em>relationships</em> between people and objects in our software, we can build systems that mimic the way people naturally organize their world to be most effective.
+This not only empowers the people consuming the software, but leads developers to arrive at more robust permission systems that can withstand changes to the organization.</p>
+<p>If you&rsquo;re left wondering what a permission system based on relationships looks like in practice, <a href="https://authzed.com">Authzed</a> is exactly that!
 We&rsquo;re currently working hands-on with customers to help them understand and migrate to a better permission system.
-If adding or refactoring permissions to support new functionality in your app is next on your roadmap, <a href=https://authzed.com/inquire>reach out to us</a>.</p></div></main><div class="tl fixed list-pages lh-copy" id=contents-list></div><div class="pagination tc tr-l db fixed-l bottom-2-l right-2-l mb3 mb0-l"><a id=scroll-to-top class="f6 o-0 link br2 ph2 pv1 mb1 bg-main-color pointer" onclick=topFunction() style="color:#fff;visibility:hidden;display:none;transition:opacity .5s,visibility .5s" title="back to top">back to top</a><br><p class="mb0 mt2"><a href=https://jzelinskie.com/posts/p-what/>prev post</a></p></div><footer class="content-width mt0 mt5-l mb4 f6 center ph3 secondary-color tc tl-l"><hr class="dn db-l ml0-l gray w3"><p class=f7>The stories and information posted here are artistic works of fiction and falsehood.<br>Only a fool would take anything posted here as fact.</p>Copyright © Jimmy Zelinskie 2020. Powered by <a href=https://gohugo.io target=_blank class="link gray dim">Hugo</a> and <a href=https://pages.github.com target=_blank class="link secondary-color dim">GitHub Pages</a>.</footer><script src=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js></script><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css><style>.is-active-link::before{background-color:var(--secondary-color)}</style><script type=text/javascript>var prevScrollpos=window.pageYOffset;window.onscroll=function(){var a=window.pageYOffset;document.getElementById("tag-cloud")!==null&&(prevScrollpos>a?(document.getElementById("tag-cloud").style.visibility="visible",document.getElementById("tag-cloud").style.opacity="1"):(document.getElementById("tag-cloud").style.visibility="hidden",document.getElementById("tag-cloud").style.opacity="0")),document.body.scrollTop>1e3||document.documentElement.scrollTop>1e3?(document.getElementById("scroll-to-top").style.display="inline",document.getElementById("scroll-to-top").style.visibility="visible",document.getElementById("scroll-to-top").style.opacity="1"):(document.getElementById("scroll-to-top").style.visibility="hidden",document.getElementById("scroll-to-top").style.opacity="0"),prevScrollpos=a};function topFunction(){document.body.scrollTop=0,document.documentElement.scrollTop=0}document.getElementById("contents-list")!==null&&document.getElementsByClassName("post-content").length!==0&&tocbot.init({tocSelector:'#contents-list',contentSelector:'.post-content',headingSelector:'h1, h2, h3'})</script></body></html>
+If adding or refactoring permissions to support new functionality in your app is next on your roadmap, <a href="https://authzed.com/inquire">reach out to us</a>.</p>
+</div>
+</main>
+ 
+
+
+
+
+
+
+<div class="tl fixed list-pages lh-copy" id="contents-list"></div>
+
+
+
+
+<div class="pagination tc tr-l db fixed-l bottom-2-l right-2-l mb3 mb0-l">
+  
+<a id="scroll-to-top" class="f6 o-0 link br2 ph2 pv1 mb1 bg-main-color pointer" onclick="topFunction()" style="color: #fff; visibility: hidden; display: none; transition: opacity .5s, visibility .5s;" title="back to top">back to top</a>
+<br>
+  <p class="mb0 mt2">
+  <a href="https://jzelinskie.com/posts/p-what/">prev post</a>
+  
+  </p>
+</div>
+
+  <footer class="content-width mt0 mt5-l mb4 f6 center ph3 secondary-color tc tl-l">
+  <hr class="dn db-l ml0-l gray w3">
+  <p class="f7">
+    The stories and information posted here are artistic works of fiction and falsehood.<br>
+    Only a fool would take anything posted here as fact.
+  </p>
+  Copyright © Jimmy Zelinskie 2020. Powered by <a href="https://gohugo.io" target="_blank" class="link gray dim">Hugo</a> and <a href="https://pages.github.com" target="_blank" class="link secondary-color dim">GitHub Pages</a>.
+</footer>
+
+  
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<style>.is-active-link::before { background-color: var(--secondary-color); }</style>
+
+
+
+
+<script type="text/javascript">
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+  var currentScrollPos = window.pageYOffset;
+
+  
+  if (document.getElementById("tag-cloud") !== null) { 
+    if (prevScrollpos > currentScrollPos) { 
+      document.getElementById("tag-cloud").style.visibility = "visible";
+      document.getElementById("tag-cloud").style.opacity = "1";
+    } else {
+      document.getElementById("tag-cloud").style.visibility = "hidden";
+      document.getElementById("tag-cloud").style.opacity = "0";
+    }
+  }
+  
+
+  
+  if (document.body.scrollTop > 1000 || document.documentElement.scrollTop > 1000) {
+      document.getElementById("scroll-to-top").style.display = "inline";
+      document.getElementById("scroll-to-top").style.visibility = "visible";
+      document.getElementById("scroll-to-top").style.opacity = "1";
+  } else {
+      document.getElementById("scroll-to-top").style.visibility = "hidden";
+      document.getElementById("scroll-to-top").style.opacity = "0";
+  }
+  
+  prevScrollpos = currentScrollPos;
+}
+
+
+function topFunction() {
+  document.body.scrollTop = 0; 
+  document.documentElement.scrollTop = 0; 
+}
+
+
+
+
+
+
+if (document.getElementById("contents-list") !== null && document.getElementsByClassName("post-content").length !== 0) { 
+  tocbot.init({
+    
+    tocSelector: '#contents-list',
+    
+    contentSelector: '.post-content',
+    
+    headingSelector: 'h1, h2, h3',
+  });
+}
+
+
+</script>
+
+
+
+
+</body>
+</html>

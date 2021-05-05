@@ -1,1 +1,21 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Categories on jzelinskie</title><link>https://jzelinskie.com/categories/</link><description>Recent content in Categories on jzelinskie</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>Copyright © Jimmy Zelinskie 2020</copyright><lastBuildDate>Wed, 03 Mar 2021 00:00:00 -0400</lastBuildDate><atom:link href="https://jzelinskie.com/categories/index.xml" rel="self" type="application/rss+xml"/><item><title>programming</title><link>https://jzelinskie.com/categories/programming/</link><pubDate>Wed, 03 Mar 2021 00:00:00 -0400</pubDate><guid>https://jzelinskie.com/categories/programming/</guid><description/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on jzelinskie</title>
+    <link>https://jzelinskie.com/categories/</link>
+    <description>Recent content in Categories on jzelinskie</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright © Jimmy Zelinskie 2020</copyright>
+    <lastBuildDate>Wed, 03 Mar 2021 00:00:00 -0400</lastBuildDate><atom:link href="https://jzelinskie.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>programming</title>
+      <link>https://jzelinskie.com/categories/programming/</link>
+      <pubDate>Wed, 03 Mar 2021 00:00:00 -0400</pubDate>
+      
+      <guid>https://jzelinskie.com/categories/programming/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
