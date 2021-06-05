@@ -7,20 +7,11 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright © Jimmy Zelinskie 2020</copyright>
-    <lastBuildDate>Wed, 03 Mar 2021 00:00:00 -0400</lastBuildDate><atom:link href="https://jzelinskie.com/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>authentication</title>
-      <link>https://jzelinskie.com/tags/authentication/</link>
-      <pubDate>Wed, 03 Mar 2021 00:00:00 -0400</pubDate>
-      
-      <guid>https://jzelinskie.com/tags/authentication/</guid>
-      <description></description>
-    </item>
-    
+    <lastBuildDate>Tue, 18 May 2021 00:00:00 -0400</lastBuildDate><atom:link href="https://jzelinskie.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>authorization</title>
       <link>https://jzelinskie.com/tags/authorization/</link>
-      <pubDate>Wed, 03 Mar 2021 00:00:00 -0400</pubDate>
+      <pubDate>Tue, 18 May 2021 00:00:00 -0400</pubDate>
       
       <guid>https://jzelinskie.com/tags/authorization/</guid>
       <description></description>
@@ -29,7 +20,7 @@
     <item>
       <title>crosspost</title>
       <link>https://jzelinskie.com/tags/crosspost/</link>
-      <pubDate>Wed, 03 Mar 2021 00:00:00 -0400</pubDate>
+      <pubDate>Tue, 18 May 2021 00:00:00 -0400</pubDate>
       
       <guid>https://jzelinskie.com/tags/crosspost/</guid>
       <description></description>
@@ -38,9 +29,18 @@
     <item>
       <title>security</title>
       <link>https://jzelinskie.com/tags/security/</link>
-      <pubDate>Wed, 03 Mar 2021 00:00:00 -0400</pubDate>
+      <pubDate>Tue, 18 May 2021 00:00:00 -0400</pubDate>
       
       <guid>https://jzelinskie.com/tags/security/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>authentication</title>
+      <link>https://jzelinskie.com/tags/authentication/</link>
+      <pubDate>Wed, 03 Mar 2021 00:00:00 -0400</pubDate>
+      
+      <guid>https://jzelinskie.com/tags/authentication/</guid>
       <description></description>
     </item>
     

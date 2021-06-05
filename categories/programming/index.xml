@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright © Jimmy Zelinskie 2020</copyright>
-    <lastBuildDate>Wed, 03 Mar 2021 00:00:00 -0400</lastBuildDate><atom:link href="https://jzelinskie.com/categories/programming/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 May 2021 00:00:00 -0400</lastBuildDate><atom:link href="https://jzelinskie.com/categories/programming/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Six Month Profile Page</title>
+      <link>https://jzelinskie.com/posts/six-month-profile-page/</link>
+      <pubDate>Tue, 18 May 2021 00:00:00 -0400</pubDate>
+      
+      <guid>https://jzelinskie.com/posts/six-month-profile-page/</guid>
+      <description>Setting the scene It&amp;rsquo;s a crisp Monday morning, err &amp;ndash; 11AM &amp;ndash; close enough. You take a seat at your desk and sip your coffee to avoid the chill you get from loading JIRA to find today&amp;rsquo;s task. Like some kind of haiku straight from hell, the ticket reads:
+ As a user that&amp;rsquo;s a part of many organizations, I&amp;rsquo;d like to see all the resources that I can access on my profile page.</description>
+    </item>
+    
     <item>
       <title>Identity Is Not the Foundation of Permission Systems</title>
       <link>https://jzelinskie.com/posts/identity-isnt-the-foundation/</link>
