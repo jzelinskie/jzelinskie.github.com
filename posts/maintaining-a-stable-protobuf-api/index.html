@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta content='text/html; charset=utf-8' http-equiv='content-type' />
+
+  <title>Maintaining a Stable Protobuf API - jzelinskie</title>
+  <meta content='Maintaining a Stable Protobuf API - jzelinskie' property='title' />
+  <meta content='Maintaining a Stable Protobuf API - jzelinskie' property='og:title' />
+
+
+<meta property="og:description" content="This is a cross-post originally written for the Buf blog.
+The first day of the rest of your life Congrats! You&rsquo;ve hit a stable release or maybe you haven&rsquo;t and instead customers have already decided to depend on your API. Rather than pulling the rug out from beneath your users, you&rsquo;ve taken it upon yourself to keep everyone happy. Now that you&rsquo;ve been tasked with maintaining API compatibility, you&rsquo;ll need a guiding light to copy for inspiration." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jzelinskie.com/posts/maintaining-a-stable-protobuf-api/" />
+
+
+<meta property="article:published_time" content="2021-06-15T00:00:00-04:00"/>
+
+<meta property="article:modified_time" content="2021-06-15T00:00:00-04:00"/>
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.84.2" />
+
+
+<link rel="canonical" href="https://blog.buf.build/2021/06/15/authzed-case-study-maintaining-a-stable-protobuf-api/">
+
+
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
+<style type="text/css">/* https://colorpalettes.net/color-palette-4199/ */
+:root {
+  --main-color: #2c3632;
+  --secondary-color: #899593;
+  --body-text-color: #030303;
+  --heading-text-color: #030303;
+}
+</style>
+<link href='/css/tachyons.min.css' rel="stylesheet">
+<link href='/css/styles.css' rel="stylesheet">
+
+
+<link rel="icon" 
+
+  href="/images/favicon.png" 
+
+type="image/x-icon"/>
+
+<link href='/feed.xml' rel="alternate" type="application/atom+xml" title="jzelinskie" />
+
+</head>
+<body class="global-font">
+  <nav class=" flex-ns justify-between border-box pa3 pl3-l pr2-l mt1 mt0-ns" id="navbar">
+  <div class="flex">
+    <a class="f4 fw6 no-underline dim main-color pv1 ph2 br2" id="site-title" href='/' title="Home"><span class="secondary-color">~</span>jzelinskie</a>
+  </div>
+  
+  <div class=" flex-ns mt2 mt0-ns pv1">
+    
+      <a class="link dim dark-gray f6 dib mr2 mr3-l ttu tracked" href='/posts' title="posts">posts</a>
+    
+      <a class="link dim dark-gray f6 dib mr2 mr3-l ttu tracked" href='/setup' title="setup">setup</a>
+    
+      <a class="link dim dark-gray f6 dib mr2 mr3-l ttu tracked" href='/whoami' title="whoami">whoami</a>
+    
+  </div>
+  
+</nav>
+
+  
+<main class="center mv4 content-width ph3">
+  <h1 class="f2 fw6 heading-font">Maintaining a Stable Protobuf API</h1>
+  
+  <p class="f5 mt1 mb4" id="post-meta">
+    <time class="silver">15 Jun 2021</time> ∘ 
+     
+    
+    <a href='/categories/programming' class="link black">programming</a>  ∘
+    
+    
+    <a href='/tags/api' class="link silver">#api</a> <a href='/tags/grpc' class="link silver">#grpc</a> <a href='/tags/protobuf' class="link silver">#protobuf</a> 
+    
+  </p>
+  
+  <div class="lh-copy post-content"><p>This is a cross-post originally written for the <a href="https://blog.buf.build/2021/06/15/authzed-case-study-maintaining-a-stable-protobuf-api/">Buf blog</a>.</p>
+<h2 id="the-first-day-of-the-rest-of-your-life">The first day of the rest of your life</h2>
+<p>Congrats!
+You&rsquo;ve hit a stable release or maybe you haven&rsquo;t and instead customers have already decided to depend on your API.
+Rather than pulling the rug out from beneath your users, you&rsquo;ve taken it upon yourself to keep everyone happy.
+Now that you&rsquo;ve been tasked with maintaining API compatibility, you&rsquo;ll need a guiding light <del>to copy</del> for inspiration.
+For many developers, <a href="https://stripe.com/blog/api-versioning">Stripe</a> is that holy grail of API compatibility:
+Applications with payments systems written using the Stripe API over a decade ago still function today without changes.
+While we should all aspire to have a comparable compatibility story, not everyone is using the same technology stack.
+What does maintaining an API at Stripe&rsquo;s level look like if you&rsquo;re using gRPC/Protobuf rather than JSON/HTTP?</p>
+<h2 id="taking-the-first-step">Taking the first step</h2>
+<p>At <a href="https://authzed.com">Authzed</a>, we&rsquo;ve begun our journey towards diligent Protobuf API versioning.
+Our initial goals are to:</p>
+<ol>
+<li>Catch breaking changes before they ship and release a new version of the API if need be</li>
+<li>Make the API consistent, intuitive, and ecosystem-friendly</li>
+<li>Remove as much friction as possible for our developers while making changes</li>
+</ol>
+<p>The starting place for us was obvious: migrate our existing ad-hoc Protobuf setup to the <a href="https://buf.build">Buf toolchain</a>.
+Buf is a new, faster Protobuf compiler, but compilation speed isn&rsquo;t why we&rsquo;re switching: we&rsquo;re sold on its robust feature-set.</p>
+<h2 id="iterating-with-confidence">Iterating with confidence</h2>
+<p>Our previous workflow had been to read the Protobuf documentation to determine whether or not a change is backwards compatible.
+Occasionally, we&rsquo;d spend time testing out code locally just to ensure that a change is wire-compatible.
+This is time consuming and adds a requirement for more tribal knowledge from our team of developers.</p>
+<p>Buf eliminates this concern with <a href="https://docs.buf.build/breaking-overview">breaking change detection</a> that can be built into CI/CD workflows.
+Going forward, we&rsquo;ll be able to publish an official versioning and deprecation policy, which can be easily and confidently enforced with Buf.</p>
+<h2 id="discovering-idioms">Discovering idioms</h2>
+<p>Even though we&rsquo;ve worked with Protobuf APIs in the past and even have a Xoogler on the team that has worked on the internal Protobuf tooling team at Google, we still struggle to write and maintain idiomatic objects and service definitions.
+Buf has a massive index of linting rules and presets like those used at Google and Uber.
+These linting rules are the culmination of experience from years of engineering and are a great source to learn from.
+The <a href="https://docs.buf.build/lint-rules">linting documentation</a> includes descriptions of the common rules and justifications for why they should be applied.
+These idioms include package naming, which in turn describes how to best version your packages, too!</p>
+<p>We&rsquo;re currently sticking with the defaults which we&rsquo;ve found quite sane.
+However, there&rsquo;s a fine balance between following idioms and making trade-offs for user experience; not every idiom yields nice to work with code generated in each language.
+When we eventually run into particular rules that choose to ignore, Buf makes <a href="https://docs.buf.build/lint-configuration">exceptions</a> a single-line change.</p>
+<h2 id="standardizing-the-build-flow">Standardizing the build flow</h2>
+<p>Before Buf, we had shell scripts for generating code from our Protobuf service definitions.
+Each shell script varied from project to project and had to include additional logic like determining where the script was executed relative to where our <code>.proto</code> files live.
+Only afterwards could we focus on passing the right flags to <code>protoc</code> to generate code.
+All of this, however, is already built into Buf, allowing us to abandon our shell scripts entirely.</p>
+<p>Now we have a <code>buf.gen.yaml</code> that specifies our plugins' arguments.
+By adding a <a href="https://en.wikipedia.org/wiki/Shebang_(Unix)">shebang</a> to the beginning of the YAML file, we even make it so you can easily <em>execute</em> the YAML file to generate the code for a project:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e">#!/usr/bin/env -S buf generate ../protos --template</span>
+<span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;v1beta1&#34;</span>
+<span style="color:#f92672">plugins</span>:
+  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;go&#34;</span>
+    <span style="color:#f92672">out</span>: <span style="color:#e6db74">&#34;pkg/proto&#34;</span>
+    <span style="color:#f92672">opt</span>: <span style="color:#e6db74">&#34;paths=source_relative&#34;</span>
+  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;go-grpc&#34;</span>
+    <span style="color:#f92672">out</span>: <span style="color:#e6db74">&#34;pkg/proto&#34;</span>
+    <span style="color:#f92672">opt</span>: <span style="color:#e6db74">&#34;paths=source_relative&#34;</span>
+  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;validate&#34;</span>
+    <span style="color:#f92672">out</span>: <span style="color:#e6db74">&#34;pkg/proto&#34;</span>
+    <span style="color:#f92672">opt</span>: <span style="color:#e6db74">&#34;paths=source_relative,lang=go&#34;</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">./buf.gen.yaml
+</code></pre></div><p>Now our devs don&rsquo;t even have to learn how to use Buf: our config files know how to run themselves and CI/CD pipelines can handle the rest.</p>
+<h2 id="a-lifelong-journey">A lifelong journey</h2>
+<p>This is just the beginning for our service&rsquo;s API.
+We know you can never truly escape <a href="https://xkcd.com/1172/">Hyrum&rsquo;s Law</a>, but these are our first steps towards minimizing the impact of the changes we make.
+Buf enabled us to fly past the first step of validating our APIs and now we can focus on building out API metrics that will be used for data-driven decision-making for our deprecation policies and API design efforts.
+We&rsquo;re extremely excited for the future Buf and its impact on the ecosystem of Protobuf tooling.</p>
+</div>
+</main>
+ 
+
+
+
+
+
+
+<div class="tl fixed list-pages lh-copy" id="contents-list"></div>
+
+
+
+
+<div class="pagination tc tr-l db fixed-l bottom-2-l right-2-l mb3 mb0-l">
+  
+<a id="scroll-to-top" class="f6 o-0 link br2 ph2 pv1 mb1 bg-main-color pointer" onclick="topFunction()" style="color: #fff; visibility: hidden; display: none; transition: opacity .5s, visibility .5s;" title="back to top">back to top</a>
+<br>
+  <p class="mb0 mt2">
+  <a href="https://jzelinskie.com/posts/six-month-profile-page/">prev post</a>
+  
+  </p>
+</div>
+
+  <footer class="content-width mt0 mt5-l mb4 f6 center ph3 secondary-color tc tl-l">
+  <hr class="dn db-l ml0-l gray w3">
+  <p class="f7">
+    The stories and information posted here are artistic works of fiction and falsehood.<br>
+    Only a fool would take anything posted here as fact.
+  </p>
+  Copyright © Jimmy Zelinskie 2020. Powered by <a href="https://gohugo.io" target="_blank" class="link gray dim">Hugo</a> and <a href="https://pages.github.com" target="_blank" class="link secondary-color dim">GitHub Pages</a>.
+</footer>
+
+  
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<style>.is-active-link::before { background-color: var(--secondary-color); }</style>
+
+
+
+
+<script type="text/javascript">
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+  var currentScrollPos = window.pageYOffset;
+
+  
+  if (document.getElementById("tag-cloud") !== null) { 
+    if (prevScrollpos > currentScrollPos) { 
+      document.getElementById("tag-cloud").style.visibility = "visible";
+      document.getElementById("tag-cloud").style.opacity = "1";
+    } else {
+      document.getElementById("tag-cloud").style.visibility = "hidden";
+      document.getElementById("tag-cloud").style.opacity = "0";
+    }
+  }
+  
+
+  
+  if (document.body.scrollTop > 1000 || document.documentElement.scrollTop > 1000) {
+      document.getElementById("scroll-to-top").style.display = "inline";
+      document.getElementById("scroll-to-top").style.visibility = "visible";
+      document.getElementById("scroll-to-top").style.opacity = "1";
+  } else {
+      document.getElementById("scroll-to-top").style.visibility = "hidden";
+      document.getElementById("scroll-to-top").style.opacity = "0";
+  }
+  
+  prevScrollpos = currentScrollPos;
+}
+
+
+function topFunction() {
+  document.body.scrollTop = 0; 
+  document.documentElement.scrollTop = 0; 
+}
+
+
+
+
+
+
+if (document.getElementById("contents-list") !== null && document.getElementsByClassName("post-content").length !== 0) { 
+  tocbot.init({
+    
+    tocSelector: '#contents-list',
+    
+    contentSelector: '.post-content',
+    
+    headingSelector: 'h1, h2, h3',
+  });
+}
+
+
+</script>
+
+
+
+
+</body>
+</html>

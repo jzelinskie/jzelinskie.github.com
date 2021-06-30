@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright © Jimmy Zelinskie 2020</copyright>
-    <lastBuildDate>Tue, 18 May 2021 00:00:00 -0400</lastBuildDate><atom:link href="https://jzelinskie.com/categories/programming/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 15 Jun 2021 00:00:00 -0400</lastBuildDate><atom:link href="https://jzelinskie.com/categories/programming/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Maintaining a Stable Protobuf API</title>
+      <link>https://jzelinskie.com/posts/maintaining-a-stable-protobuf-api/</link>
+      <pubDate>Tue, 15 Jun 2021 00:00:00 -0400</pubDate>
+      
+      <guid>https://jzelinskie.com/posts/maintaining-a-stable-protobuf-api/</guid>
+      <description>This is a cross-post originally written for the Buf blog.
+The first day of the rest of your life Congrats! You&amp;rsquo;ve hit a stable release or maybe you haven&amp;rsquo;t and instead customers have already decided to depend on your API. Rather than pulling the rug out from beneath your users, you&amp;rsquo;ve taken it upon yourself to keep everyone happy. Now that you&amp;rsquo;ve been tasked with maintaining API compatibility, you&amp;rsquo;ll need a guiding light to copy for inspiration.</description>
+    </item>
+    
     <item>
       <title>The Six Month Profile Page</title>
       <link>https://jzelinskie.com/posts/six-month-profile-page/</link>

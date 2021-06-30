@@ -2,28 +2,40 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://jzelinskie.com/tags/authorization/</loc>
-    <lastmod>2021-05-18T00:00:00-04:00</lastmod>
+    <loc>https://jzelinskie.com/tags/api/</loc>
+    <lastmod>2021-06-15T00:00:00-04:00</lastmod>
   </url><url>
     <loc>https://jzelinskie.com/categories/</loc>
+    <lastmod>2021-06-15T00:00:00-04:00</lastmod>
+  </url><url>
+    <loc>https://jzelinskie.com/tags/grpc/</loc>
+    <lastmod>2021-06-15T00:00:00-04:00</lastmod>
+  </url><url>
+    <loc>https://jzelinskie.com/</loc>
+    <lastmod>2021-06-15T00:00:00-04:00</lastmod>
+  </url><url>
+    <loc>https://jzelinskie.com/posts/maintaining-a-stable-protobuf-api/</loc>
+    <lastmod>2021-06-15T00:00:00-04:00</lastmod>
+  </url><url>
+    <loc>https://jzelinskie.com/posts/</loc>
+    <lastmod>2021-06-15T00:00:00-04:00</lastmod>
+  </url><url>
+    <loc>https://jzelinskie.com/categories/programming/</loc>
+    <lastmod>2021-06-15T00:00:00-04:00</lastmod>
+  </url><url>
+    <loc>https://jzelinskie.com/tags/protobuf/</loc>
+    <lastmod>2021-06-15T00:00:00-04:00</lastmod>
+  </url><url>
+    <loc>https://jzelinskie.com/tags/</loc>
+    <lastmod>2021-06-15T00:00:00-04:00</lastmod>
+  </url><url>
+    <loc>https://jzelinskie.com/tags/authorization/</loc>
     <lastmod>2021-05-18T00:00:00-04:00</lastmod>
   </url><url>
     <loc>https://jzelinskie.com/tags/crosspost/</loc>
     <lastmod>2021-05-18T00:00:00-04:00</lastmod>
   </url><url>
-    <loc>https://jzelinskie.com/</loc>
-    <lastmod>2021-05-18T00:00:00-04:00</lastmod>
-  </url><url>
-    <loc>https://jzelinskie.com/posts/</loc>
-    <lastmod>2021-05-18T00:00:00-04:00</lastmod>
-  </url><url>
-    <loc>https://jzelinskie.com/categories/programming/</loc>
-    <lastmod>2021-05-18T00:00:00-04:00</lastmod>
-  </url><url>
     <loc>https://jzelinskie.com/tags/security/</loc>
-    <lastmod>2021-05-18T00:00:00-04:00</lastmod>
-  </url><url>
-    <loc>https://jzelinskie.com/tags/</loc>
     <lastmod>2021-05-18T00:00:00-04:00</lastmod>
   </url><url>
     <loc>https://jzelinskie.com/posts/six-month-profile-page/</loc>
