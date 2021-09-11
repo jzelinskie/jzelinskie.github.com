@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>metrics on jzelinskie</title>
+    <link>https://jzelinskie.com/tags/metrics/</link>
+    <description>Recent content in metrics on jzelinskie</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright © Jimmy Zelinskie 2020</copyright>
+    <lastBuildDate>Sat, 11 Sep 2021 00:00:00 -0400</lastBuildDate><atom:link href="https://jzelinskie.com/tags/metrics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Observability shouldn&#39;t be private</title>
+      <link>https://jzelinskie.com/posts/observability-shouldnt-be-private/</link>
+      <pubDate>Sat, 11 Sep 2021 00:00:00 -0400</pubDate>
+      
+      <guid>https://jzelinskie.com/posts/observability-shouldnt-be-private/</guid>
+      <description>This post was originally published on the Authzed Blog.
+Today we&amp;rsquo;re announcing the availability of API latency metrics in the Authzed dashboard. Now Authzed users can see the performance of their API usage and more easily correlate performance of Authzed with their own applications.
+Authzed is a database and service that stores, computes, and validates your application&amp;rsquo;s permissions.
+Developers create a schema that models their permissions requirements and use client libraries to apply the schema to the database, insert data into the database, and query the data to efficiently check permissions in their applications.</description>
+    </item>
+    
+  </channel>
+</rss>

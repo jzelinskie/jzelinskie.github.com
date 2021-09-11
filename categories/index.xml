@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright © Jimmy Zelinskie 2020</copyright>
-    <lastBuildDate>Tue, 15 Jun 2021 00:00:00 -0400</lastBuildDate><atom:link href="https://jzelinskie.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 11 Sep 2021 00:00:00 -0400</lastBuildDate><atom:link href="https://jzelinskie.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>product</title>
+      <link>https://jzelinskie.com/categories/product/</link>
+      <pubDate>Sat, 11 Sep 2021 00:00:00 -0400</pubDate>
+      
+      <guid>https://jzelinskie.com/categories/product/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>programming</title>
       <link>https://jzelinskie.com/categories/programming/</link>

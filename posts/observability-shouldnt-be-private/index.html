@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta content='text/html; charset=utf-8' http-equiv='content-type' />
+
+  <title>Observability shouldn&#39;t be private - jzelinskie</title>
+  <meta content='Observability shouldn&#39;t be private - jzelinskie' property='title' />
+  <meta content='Observability shouldn&#39;t be private - jzelinskie' property='og:title' />
+
+
+<meta property="og:description" content="This post was originally published on the Authzed Blog.
+Today we&rsquo;re announcing the availability of API latency metrics in the Authzed dashboard. Now Authzed users can see the performance of their API usage and more easily correlate performance of Authzed with their own applications.
+Authzed is a database and service that stores, computes, and validates your application&rsquo;s permissions.
+Developers create a schema that models their permissions requirements and use client libraries to apply the schema to the database, insert data into the database, and query the data to efficiently check permissions in their applications." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://jzelinskie.com/posts/observability-shouldnt-be-private/" />
+
+
+<meta property="article:published_time" content="2021-09-11T00:00:00-04:00"/>
+
+<meta property="article:modified_time" content="2021-09-11T00:00:00-04:00"/>
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.87.0" />
+
+
+<link rel="canonical" href="https://authzed.com/blog/observability-shouldnt-be-private/">
+
+
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
+<style type="text/css">/* https://colorpalettes.net/color-palette-4199/ */
+:root {
+  --main-color: #2c3632;
+  --secondary-color: #899593;
+  --body-text-color: #030303;
+  --heading-text-color: #030303;
+}
+</style>
+<link href='/css/tachyons.min.css' rel="stylesheet">
+<link href='/css/styles.css' rel="stylesheet">
+
+
+<link rel="icon" 
+
+  href="/images/favicon.png" 
+
+type="image/x-icon"/>
+
+<link href='/feed.xml' rel="alternate" type="application/atom+xml" title="jzelinskie" />
+
+</head>
+<body class="global-font">
+  <nav class=" flex-ns justify-between border-box pa3 pl3-l pr2-l mt1 mt0-ns" id="navbar">
+  <div class="flex">
+    <a class="f4 fw6 no-underline dim main-color pv1 ph2 br2" id="site-title" href='/' title="Home"><span class="secondary-color">~</span>jzelinskie</a>
+  </div>
+  
+  <div class=" flex-ns mt2 mt0-ns pv1">
+    
+      <a class="link dim dark-gray f6 dib mr2 mr3-l ttu tracked" href='/posts' title="posts">posts</a>
+    
+      <a class="link dim dark-gray f6 dib mr2 mr3-l ttu tracked" href='/setup' title="setup">setup</a>
+    
+      <a class="link dim dark-gray f6 dib mr2 mr3-l ttu tracked" href='/whoami' title="whoami">whoami</a>
+    
+  </div>
+  
+</nav>
+
+  
+<main class="center mv4 content-width ph3">
+  <h1 class="f2 fw6 heading-font">Observability shouldn&#39;t be private</h1>
+  
+  <p class="f5 mt1 mb4" id="post-meta">
+    <time class="silver">11 Sep 2021</time> ∘ 
+     
+    
+    <a href='/categories/product' class="link black">product</a>  ∘
+    
+    
+    <a href='/tags/saas' class="link silver">#saas</a> <a href='/tags/observability' class="link silver">#observability</a> <a href='/tags/metrics' class="link silver">#metrics</a> 
+    
+  </p>
+  
+  <div class="lh-copy post-content"><p>This post was originally published on the <a href="https://authzed.com/blog/observability-shouldnt-be-private/">Authzed Blog</a>.</p>
+<p>Today we&rsquo;re announcing the availability of API latency metrics in the Authzed dashboard.
+Now Authzed users can see the performance of their API usage and more easily correlate performance of Authzed with their own applications.</p>
+<p>Authzed is a database and service that stores, computes, and validates your application&rsquo;s permissions.</p>
+<p>Developers create a schema that models their permissions requirements and use client libraries to apply the schema to the database, insert data into the database, and query the data to efficiently check permissions in their applications.</p>
+<p>You can learn more by following our <strong><a href="https://docs.authzed.com/guides/first-app/">Protect Your First App guide</a></strong> or watching the video of us <strong><a href="https://www.youtube.com/watch?v=x3-B9-ICj0w">modeling GitHub&rsquo;s permission system</a></strong>.</p>
+<h2 id="playing-buzzword-bingo">Playing buzzword bingo</h2>
+<p>Observability is the focus of collecting telemetry such as metrics, logs, and execution traces in order to reduce the friction in understanding the internals of running software.
+In the past few years, there have been major strides to improve the observability of software in the cloud native ecosystem.
+The systems powering Authzed are no exception and follow these best practices.
+Observability data helps us run a stable and performant service for our users.
+This is where most SaaS products stop, but we think that the SaaS ecosystem can do better.</p>
+<h2 id="what-about-the-users">What about the users?</h2>
+<p>While following best practices internally is great for <em>our team</em>, it leaves <em>our users</em> in a position where they are forced to treat Authzed as an opaque, black-box system.
+To improve upon this situtation, communicating outages and maintenance via <a href="https://status.authzed.com">Status Pages</a> and <a href="https://twitter.com/authzed/status/1414684338747166721">Twitter</a> has now become commonplace in the industry of SaaS products.
+Many services, including Authzed, also have service-wide <a href="https://status.authzed.com/#system-metrics">metrics that are made public</a> on their status pages.
+But if some of this data is being made public, this begs the question: why keep observability data private at all?</p>
+<h2 id="removing-the-veil">Removing the veil</h2>
+<p>Moving forward, our plan is maintain <strong>a single</strong> observability stack for both internal and external usage.
+The only difference between these two use cases is that users will be only able to query for observability data for their own systems.
+Observability data will first make its way into the Authzed dashboard, but always with a design requirement that our users will eventually be able to directly query the data sources that power the dashboard.</p>
+<p>Because Authzed depends on having low latency communication with customer applications, it was obvious that we start by exposing performance metrics first.
+Users will now find a &ldquo;Metrics&rdquo; tab on their Permissions Systems that contains line graphs with the <a href="https://en.wikipedia.org/wiki/Percentile">95th percentile</a> latency for the Check, Expand, Read, and Write API requests.</p>
+<p><img src="/images/blogs/observability-shouldnt-be-private/metrics-tab.png" alt="image of the metrics tab on the Authzed dashboard"></p>
+<p>After sufficient testing, we plan to document the process for configuring your own observability stack to use our <a href="https://prometheus.io">Prometheus</a> data source for your own visualizations and alerting rules.
+For those looking for all the awesome technical details as to how we are securing and scaling out our observability stack: we will be covering that in a future blog post.</p>
+<p>If tackling problems like these sounds exciting to you, consider checking out our <a href="https://authzed.com/jobs">careers page</a>, as we&rsquo;re currently hiring for the full spectrum of engineering roles.</p>
+</div>
+</main>
+ 
+
+
+
+
+
+
+<div class="tl fixed list-pages lh-copy" id="contents-list"></div>
+
+
+
+
+<div class="pagination tc tr-l db fixed-l bottom-2-l right-2-l mb3 mb0-l">
+  
+<a id="scroll-to-top" class="f6 o-0 link br2 ph2 pv1 mb1 bg-main-color pointer" onclick="topFunction()" style="color: #fff; visibility: hidden; display: none; transition: opacity .5s, visibility .5s;" title="back to top">back to top</a>
+<br>
+  <p class="mb0 mt2">
+  <a href="https://jzelinskie.com/posts/maintaining-a-stable-protobuf-api/">prev post</a>
+  
+  </p>
+</div>
+
+  <footer class="content-width mt0 mt5-l mb4 f6 center ph3 secondary-color tc tl-l">
+  <hr class="dn db-l ml0-l gray w3">
+  <p class="f7">
+    The stories and information posted here are artistic works of fiction and falsehood.<br>
+    Only a fool would take anything posted here as fact.
+  </p>
+  Copyright © Jimmy Zelinskie 2020. Powered by <a href="https://gohugo.io" target="_blank" class="link gray dim">Hugo</a> and <a href="https://pages.github.com" target="_blank" class="link secondary-color dim">GitHub Pages</a>.
+</footer>
+
+  
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<style>.is-active-link::before { background-color: var(--secondary-color); }</style>
+
+
+
+
+<script type="text/javascript">
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+  var currentScrollPos = window.pageYOffset;
+
+  
+  if (document.getElementById("tag-cloud") !== null) { 
+    if (prevScrollpos > currentScrollPos) { 
+      document.getElementById("tag-cloud").style.visibility = "visible";
+      document.getElementById("tag-cloud").style.opacity = "1";
+    } else {
+      document.getElementById("tag-cloud").style.visibility = "hidden";
+      document.getElementById("tag-cloud").style.opacity = "0";
+    }
+  }
+  
+
+  
+  if (document.body.scrollTop > 1000 || document.documentElement.scrollTop > 1000) {
+      document.getElementById("scroll-to-top").style.display = "inline";
+      document.getElementById("scroll-to-top").style.visibility = "visible";
+      document.getElementById("scroll-to-top").style.opacity = "1";
+  } else {
+      document.getElementById("scroll-to-top").style.visibility = "hidden";
+      document.getElementById("scroll-to-top").style.opacity = "0";
+  }
+  
+  prevScrollpos = currentScrollPos;
+}
+
+
+function topFunction() {
+  document.body.scrollTop = 0; 
+  document.documentElement.scrollTop = 0; 
+}
+
+
+
+
+
+
+if (document.getElementById("contents-list") !== null && document.getElementsByClassName("post-content").length !== 0) { 
+  tocbot.init({
+    
+    tocSelector: '#contents-list',
+    
+    contentSelector: '.post-content',
+    
+    headingSelector: 'h1, h2, h3',
+  });
+}
+
+
+</script>
+
+
+
+
+</body>
+</html>
