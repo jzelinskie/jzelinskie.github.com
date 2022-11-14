@@ -27,7 +27,7 @@ Feast your eyes on the marvel that is modern software engineering:" />
 
 
 
-<meta name="generator" content="Hugo 0.87.0" />
+<meta name="generator" content="Hugo 0.105.0">
 
 
 <link rel="canonical" href="/posts/dont-recommend-sourcing-shell-completion/">
@@ -93,7 +93,7 @@ In order to prevent my future self from wasting valuable seconds of my life, I w
 After extensive use of zprof, I determined my bottleneck: sourcing command completion files, but only the ones that executed a program to get their contents.</p>
 <p><img src="/images/posts/dont-recommend-sourcing-shell-completion/profile.png" alt="zsh profile"></p>
 <p>Feast your eyes on the marvel that is modern software engineering:</p>
-<pre><code>source &lt;(kubectl completion zsh)
+<pre tabindex="0"><code>source &lt;(kubectl completion zsh)
 </code></pre><p>I am singling out the kubectl tool for Kubernetes, as it is a fairly common source of aggravation in my life.
 And while I may come off sounding extremely sardonic, I am genuinely trying to convince you that there is value in analyzing what appears to be such an insignificant snippet of shell code.</p>
 <p>For those unfamiliar, this code snippet is intended for loading completion functions into your shell.
@@ -101,7 +101,7 @@ Completion functions are what enable users to press the tab key on their keyboar
 In this case, the program has a command, <code>kubectl completion zsh</code>, that outputs the code required to teach <code>zsh</code> about all of the flags available from <code>kubectl</code>.
 The <code>source</code> command is a built-in shell function that evaluates shell scripts.
 The scary looking <code>&lt;()</code> voodoo is doing nothing more than redirecting the output of the completion command into the input for the <code>source</code> function.</p>
-<p>This strategy for extending users' shells isn&rsquo;t exclusive to <code>kubectl</code>.
+<p>This strategy for extending users&rsquo; shells isn&rsquo;t exclusive to <code>kubectl</code>.
 At first glance, it appears to be a great way to ship shell completion files; users never have to worry that the version of the completion code and the version of the software are mismatched.
 However, every design decision has trade-offs.</p>
 <p>The performance cost of sourcing completion files is no news to the zsh developers.

@@ -27,7 +27,7 @@ The first day of the rest of your life Congrats! You&rsquo;ve hit a stable relea
 
 
 
-<meta name="generator" content="Hugo 0.87.0" />
+<meta name="generator" content="Hugo 0.105.0">
 
 
 <link rel="canonical" href="https://blog.buf.build/2021/06/15/authzed-case-study-maintaining-a-stable-protobuf-api/">
@@ -128,22 +128,22 @@ When we eventually run into particular rules that choose to ignore, Buf makes <a
 Each shell script varied from project to project and had to include additional logic like determining where the script was executed relative to where our <code>.proto</code> files live.
 Only afterwards could we focus on passing the right flags to <code>protoc</code> to generate code.
 All of this, however, is already built into Buf, allowing us to abandon our shell scripts entirely.</p>
-<p>Now we have a <code>buf.gen.yaml</code> that specifies our plugins' arguments.
+<p>Now we have a <code>buf.gen.yaml</code> that specifies our plugins&rsquo; arguments.
 By adding a <a href="https://en.wikipedia.org/wiki/Shebang_(Unix)">shebang</a> to the beginning of the YAML file, we even make it so you can easily <em>execute</em> the YAML file to generate the code for a project:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e">#!/usr/bin/env -S buf generate ../protos --template</span>
-<span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;v1beta1&#34;</span>
-<span style="color:#f92672">plugins</span>:
-  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;go&#34;</span>
-    <span style="color:#f92672">out</span>: <span style="color:#e6db74">&#34;pkg/proto&#34;</span>
-    <span style="color:#f92672">opt</span>: <span style="color:#e6db74">&#34;paths=source_relative&#34;</span>
-  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;go-grpc&#34;</span>
-    <span style="color:#f92672">out</span>: <span style="color:#e6db74">&#34;pkg/proto&#34;</span>
-    <span style="color:#f92672">opt</span>: <span style="color:#e6db74">&#34;paths=source_relative&#34;</span>
-  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;validate&#34;</span>
-    <span style="color:#f92672">out</span>: <span style="color:#e6db74">&#34;pkg/proto&#34;</span>
-    <span style="color:#f92672">opt</span>: <span style="color:#e6db74">&#34;paths=source_relative,lang=go&#34;</span>
-</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">./buf.gen.yaml
-</code></pre></div><p>Now our devs don&rsquo;t even have to learn how to use Buf: our config files know how to run themselves and CI/CD pipelines can handle the rest.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env -S buf generate ../protos --template</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;v1beta1&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">plugins</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;go&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">out</span>: <span style="color:#e6db74">&#34;pkg/proto&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">opt</span>: <span style="color:#e6db74">&#34;paths=source_relative&#34;</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;go-grpc&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">out</span>: <span style="color:#e6db74">&#34;pkg/proto&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">opt</span>: <span style="color:#e6db74">&#34;paths=source_relative&#34;</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;validate&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">out</span>: <span style="color:#e6db74">&#34;pkg/proto&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">opt</span>: <span style="color:#e6db74">&#34;paths=source_relative,lang=go&#34;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>./buf.gen.yaml
+</span></span></code></pre></div><p>Now our devs don&rsquo;t even have to learn how to use Buf: our config files know how to run themselves and CI/CD pipelines can handle the rest.</p>
 <h2 id="a-lifelong-journey">A lifelong journey</h2>
 <p>This is just the beginning for our service&rsquo;s API.
 We know you can never truly escape <a href="https://xkcd.com/1172/">Hyrum&rsquo;s Law</a>, but these are our first steps towards minimizing the impact of the changes we make.

@@ -35,7 +35,7 @@ The first time I met Antoine, he had hacked together a demo of packaging up and 
       
       <guid>https://jzelinskie.com/posts/olm/</guid>
       <description>At KubeCon EU 2018, Red Hat eagerly announced the open sourcing of the Operator Framework. There&amp;rsquo;s a lot of buzzword bingo these days, but being someone who helped originally pioneer the concept at CoreOS, I feel I can give a fair definition:
- An Operator is a Kubernetes pattern that is extending the Kubernetes control plane with a custom Controller and Custom Resource Definitions that add additional operational knowledge of an application.</description>
+An Operator is a Kubernetes pattern that is extending the Kubernetes control plane with a custom Controller and Custom Resource Definitions that add additional operational knowledge of an application.</description>
     </item>
     
     <item>
@@ -45,7 +45,7 @@ The first time I met Antoine, he had hacked together a demo of packaging up and 
       
       <guid>https://jzelinskie.com/posts/youre-not-running-vanilla-kubernetes/</guid>
       <description>Stop pretending it isn&amp;rsquo;t your own clumsy distribution. Seriously.
- Haven&amp;rsquo;t heard of &amp;ldquo;vanilla Kubernetes&amp;rdquo;? In the ever competitive age of selling Kubernetes, there seems to be a trend towards promising vendor neutrality. After all, the promise of Kubernetes is to free you from the tyranny of your cloud provider, right? It&amp;rsquo;s only natural that the mentality of avoiding lock-in be applied to Kubernetes itself. The community has arrived on the colloquial term &amp;ldquo;vanilla Kubernetes&amp;rdquo; to describe an installation of the only the upstream components as released by the Kubernetes project.</description>
+Haven&amp;rsquo;t heard of &amp;ldquo;vanilla Kubernetes&amp;rdquo;? In the ever competitive age of selling Kubernetes, there seems to be a trend towards promising vendor neutrality. After all, the promise of Kubernetes is to free you from the tyranny of your cloud provider, right? It&amp;rsquo;s only natural that the mentality of avoiding lock-in be applied to Kubernetes itself. The community has arrived on the colloquial term &amp;ldquo;vanilla Kubernetes&amp;rdquo; to describe an installation of the only the upstream components as released by the Kubernetes project.</description>
     </item>
     
   </channel>

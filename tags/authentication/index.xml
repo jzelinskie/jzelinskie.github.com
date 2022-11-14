@@ -16,7 +16,7 @@
       <guid>https://jzelinskie.com/posts/identity-isnt-the-foundation/</guid>
       <description>This post was originally published on the Authzed Blog.
 Have you ever chatted with a fellow developer about an application&amp;rsquo;s permission system and quickly realized you&amp;rsquo;re also talking about its login system? It&amp;rsquo;s rather unfortunate, but these two entirely distinct systems often get merged together simply because their formal names start with the same four letters: AUTH.
- Authentication (&amp;ldquo;authN&amp;rdquo; or &amp;ldquo;identity&amp;rdquo;) is who you are
+Authentication (&amp;ldquo;authN&amp;rdquo; or &amp;ldquo;identity&amp;rdquo;) is who you are
 Authorization (&amp;ldquo;authZ&amp;rdquo; or &amp;ldquo;permissions&amp;rdquo; or &amp;ldquo;access control&amp;rdquo;) is what you&amp;rsquo;re allowed to do</description>
     </item>
     

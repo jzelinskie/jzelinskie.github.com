@@ -15,7 +15,7 @@
       
       <guid>https://jzelinskie.com/posts/olm/</guid>
       <description>At KubeCon EU 2018, Red Hat eagerly announced the open sourcing of the Operator Framework. There&amp;rsquo;s a lot of buzzword bingo these days, but being someone who helped originally pioneer the concept at CoreOS, I feel I can give a fair definition:
- An Operator is a Kubernetes pattern that is extending the Kubernetes control plane with a custom Controller and Custom Resource Definitions that add additional operational knowledge of an application.</description>
+An Operator is a Kubernetes pattern that is extending the Kubernetes control plane with a custom Controller and Custom Resource Definitions that add additional operational knowledge of an application.</description>
     </item>
     
   </channel>

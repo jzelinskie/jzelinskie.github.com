@@ -29,7 +29,7 @@ Developers create a schema that models their permissions requirements and use cl
 
 
 
-<meta name="generator" content="Hugo 0.87.0" />
+<meta name="generator" content="Hugo 0.105.0">
 
 
 <link rel="canonical" href="https://authzed.com/blog/observability-shouldnt-be-private/">
@@ -113,7 +113,7 @@ The only difference between these two use cases is that users will be only able 
 Observability data will first make its way into the Authzed dashboard, but always with a design requirement that our users will eventually be able to directly query the data sources that power the dashboard.</p>
 <p>Because Authzed depends on having low latency communication with customer applications, it was obvious that we start by exposing performance metrics first.
 Users will now find a &ldquo;Metrics&rdquo; tab on their Permissions Systems that contains line graphs with the <a href="https://en.wikipedia.org/wiki/Percentile">95th percentile</a> latency for the Check, Expand, Read, and Write API requests.</p>
-<p><img src="/images/blogs/observability-shouldnt-be-private/metrics-tab.png" alt="image of the metrics tab on the Authzed dashboard"></p>
+<p><img src="https://authzed.com/images/blogs/observability-shouldnt-be-private/metrics-tab.png" alt="image of the metrics tab on the Authzed dashboard"></p>
 <p>After sufficient testing, we plan to document the process for configuring your own observability stack to use our <a href="https://prometheus.io">Prometheus</a> data source for your own visualizations and alerting rules.
 For those looking for all the awesome technical details as to how we are securing and scaling out our observability stack: we will be covering that in a future blog post.</p>
 <p>If tackling problems like these sounds exciting to you, consider checking out our <a href="https://authzed.com/jobs">careers page</a>, as we&rsquo;re currently hiring for the full spectrum of engineering roles.</p>

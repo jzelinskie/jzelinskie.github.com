@@ -27,7 +27,7 @@ Totally lost? If the title of this post seems unintelligible, fear not!" />
 
 
 
-<meta name="generator" content="Hugo 0.87.0" />
+<meta name="generator" content="Hugo 0.105.0">
 
 
 <link rel="canonical" href="/posts/toolbox-for-your-dotfiles/">
@@ -95,7 +95,7 @@ You&rsquo;d be wrong however.
 I&rsquo;m going to explain a simple trick that I use often when <code>ssh</code>ing into a remote machine for some old school sysadmin work.</p>
 <h3 id="totally-lost">Totally lost?</h3>
 <p>If the title of this post seems unintelligible, fear not!
-Dotfiles are a slang term for command line tools' configuration files that are scattered in your <code>$HOME</code> directory.
+Dotfiles are a slang term for command line tools&rsquo; configuration files that are scattered in your <code>$HOME</code> directory.
 As it turns out, they all happen to be prefixed by a dot as the result of unintentional behavior (<a href="https://web.archive.org/web/20190202170417/plus.google.com/+RobPikeTheHuman/posts/R58WgWwN9jp">pronounced bug</a>) in Unix.
 Lots of people store their dotfiles on GitHub so that they can easily synchronize them across machines.
 I&rsquo;ve publicly maintained mine <a href="http://github.com/jzelinskie/dotfiles">here</a> since 2013.</p>
@@ -121,7 +121,7 @@ Using a Dockerfile to build a container image of your dotfiles means that you ca
 Wish that machine over there had your git/vim/zsh config?
 Just use the toolbox trick with the container image of your dotfiles.
 I use different flags to docker depending on how much access I want to the system, but a good start that&rsquo;s simple could be like so:</p>
-<pre><code>docker run --privileged=true -v /:/mnt -ti quay.io/jzelinskie/toolbox:latest zsh
+<pre tabindex="0"><code>docker run --privileged=true -v /:/mnt -ti quay.io/jzelinskie/toolbox:latest zsh
 </code></pre><p>If you give yourself privileged you can do things like <code>nsenter</code> into other containers and muck around with them.
 In the past, I have actually been able to use this to debug some pretty nasty production incidents.</p>
 </div>

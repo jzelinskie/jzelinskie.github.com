@@ -35,8 +35,8 @@ The first time I met Antoine, he had hacked together a demo of packaging up and 
       
       <guid>https://jzelinskie.com/posts/jails-containers-and-their-perceived-security/</guid>
       <description>My scroll-wheel stops. Under my mouse, the typical HN comment:
- Docker&amp;rsquo;s just about packaging! Containers aren&amp;rsquo;t secure! Unlike like jails *strokes unix beard*
- The world&amp;rsquo;s full of interesting partial truths.
+Docker&amp;rsquo;s just about packaging! Containers aren&amp;rsquo;t secure! Unlike like jails *strokes unix beard*
+The world&amp;rsquo;s full of interesting partial truths.
 Docker did clue a lot of developers into the Linux kernel&amp;rsquo;s isolation primitives by providing a compelling developer experience. It didn&amp;rsquo;t take long for others to catch on, though. In my semi-recent foray with FreeBSD, I noticed that managing jails with iocage doesn&amp;rsquo;t feel too far off managing containers with docker.</description>
     </item>
     

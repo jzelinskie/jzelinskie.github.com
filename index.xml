@@ -37,7 +37,7 @@ The first day of the rest of your life Congrats! You&amp;rsquo;ve hit a stable r
       
       <guid>https://jzelinskie.com/posts/six-month-profile-page/</guid>
       <description>Setting the scene It&amp;rsquo;s a crisp Monday morning, err &amp;ndash; 11AM &amp;ndash; close enough. You take a seat at your desk and sip your coffee to avoid the chill you get from loading JIRA to find today&amp;rsquo;s task. Like some kind of haiku straight from hell, the ticket reads:
- As a user that&amp;rsquo;s a part of many organizations, I&amp;rsquo;d like to see all the resources that I can access on my profile page.</description>
+As a user that&amp;rsquo;s a part of many organizations, I&amp;rsquo;d like to see all the resources that I can access on my profile page.</description>
     </item>
     
     <item>
@@ -48,7 +48,7 @@ The first day of the rest of your life Congrats! You&amp;rsquo;ve hit a stable r
       <guid>https://jzelinskie.com/posts/identity-isnt-the-foundation/</guid>
       <description>This post was originally published on the Authzed Blog.
 Have you ever chatted with a fellow developer about an application&amp;rsquo;s permission system and quickly realized you&amp;rsquo;re also talking about its login system? It&amp;rsquo;s rather unfortunate, but these two entirely distinct systems often get merged together simply because their formal names start with the same four letters: AUTH.
- Authentication (&amp;ldquo;authN&amp;rdquo; or &amp;ldquo;identity&amp;rdquo;) is who you are
+Authentication (&amp;ldquo;authN&amp;rdquo; or &amp;ldquo;identity&amp;rdquo;) is who you are
 Authorization (&amp;ldquo;authZ&amp;rdquo; or &amp;ldquo;permissions&amp;rdquo; or &amp;ldquo;access control&amp;rdquo;) is what you&amp;rsquo;re allowed to do</description>
     </item>
     
@@ -59,7 +59,7 @@ Authorization (&amp;ldquo;authZ&amp;rdquo; or &amp;ldquo;permissions&amp;rdquo; 
       
       <guid>https://jzelinskie.com/posts/p-what/</guid>
       <description>Over the years, I&amp;rsquo;ve found that many software engineers either aren&amp;rsquo;t familiar with other roles at their organization or are often confused by them. This is by no fault of their own because managerial roles differ from company to company and often people overextend their responsibilities to make up for a deficiency in the organization.
- It also doesn&amp;rsquo;t help that so many of them have roughly the same abbreviation: PM.</description>
+It also doesn&amp;rsquo;t help that so many of them have roughly the same abbreviation: PM.</description>
     </item>
     
     <item>
@@ -89,7 +89,7 @@ The first time I met Antoine, he had hacked together a demo of packaging up and 
       
       <guid>https://jzelinskie.com/posts/olm/</guid>
       <description>At KubeCon EU 2018, Red Hat eagerly announced the open sourcing of the Operator Framework. There&amp;rsquo;s a lot of buzzword bingo these days, but being someone who helped originally pioneer the concept at CoreOS, I feel I can give a fair definition:
- An Operator is a Kubernetes pattern that is extending the Kubernetes control plane with a custom Controller and Custom Resource Definitions that add additional operational knowledge of an application.</description>
+An Operator is a Kubernetes pattern that is extending the Kubernetes control plane with a custom Controller and Custom Resource Definitions that add additional operational knowledge of an application.</description>
     </item>
     
     <item>
@@ -99,7 +99,7 @@ The first time I met Antoine, he had hacked together a demo of packaging up and 
       
       <guid>https://jzelinskie.com/posts/youre-not-running-vanilla-kubernetes/</guid>
       <description>Stop pretending it isn&amp;rsquo;t your own clumsy distribution. Seriously.
- Haven&amp;rsquo;t heard of &amp;ldquo;vanilla Kubernetes&amp;rdquo;? In the ever competitive age of selling Kubernetes, there seems to be a trend towards promising vendor neutrality. After all, the promise of Kubernetes is to free you from the tyranny of your cloud provider, right? It&amp;rsquo;s only natural that the mentality of avoiding lock-in be applied to Kubernetes itself. The community has arrived on the colloquial term &amp;ldquo;vanilla Kubernetes&amp;rdquo; to describe an installation of the only the upstream components as released by the Kubernetes project.</description>
+Haven&amp;rsquo;t heard of &amp;ldquo;vanilla Kubernetes&amp;rdquo;? In the ever competitive age of selling Kubernetes, there seems to be a trend towards promising vendor neutrality. After all, the promise of Kubernetes is to free you from the tyranny of your cloud provider, right? It&amp;rsquo;s only natural that the mentality of avoiding lock-in be applied to Kubernetes itself. The community has arrived on the colloquial term &amp;ldquo;vanilla Kubernetes&amp;rdquo; to describe an installation of the only the upstream components as released by the Kubernetes project.</description>
     </item>
     
     <item>
@@ -119,8 +119,8 @@ Feast your eyes on the marvel that is modern software engineering:</description>
       
       <guid>https://jzelinskie.com/posts/jails-containers-and-their-perceived-security/</guid>
       <description>My scroll-wheel stops. Under my mouse, the typical HN comment:
- Docker&amp;rsquo;s just about packaging! Containers aren&amp;rsquo;t secure! Unlike like jails *strokes unix beard*
- The world&amp;rsquo;s full of interesting partial truths.
+Docker&amp;rsquo;s just about packaging! Containers aren&amp;rsquo;t secure! Unlike like jails *strokes unix beard*
+The world&amp;rsquo;s full of interesting partial truths.
 Docker did clue a lot of developers into the Linux kernel&amp;rsquo;s isolation primitives by providing a compelling developer experience. It didn&amp;rsquo;t take long for others to catch on, though. In my semi-recent foray with FreeBSD, I noticed that managing jails with iocage doesn&amp;rsquo;t feel too far off managing containers with docker.</description>
     </item>
     
@@ -130,7 +130,7 @@ Docker did clue a lot of developers into the Linux kernel&amp;rsquo;s isolation 
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://jzelinskie.com/whoami/</guid>
-      <description>Social  GitHub @jzelinskie Twitter @jimmyzelinskie Keybase @jzelinskie HackerNews jzelinskie Reddit jzelinskie Last.fm jzelinskie IRC jzelinskie @ freenode Slack jzelinskie @ Kubernetes, CNCF, OCI Matrix @jzelinskie:matrix.org Email jimmyzelinskie [at] gmail [dot] com Location NYC  Open Source  Maintainer Open Container Initiative Community member Kubernetes Cofounder in spirit Quay, container registry Coauthor clair, container vulnerability static analysis server Coauthor OLM, a component of the Operator Framework Coauthor App Registry, the original inspiration for OCI Artifacts Author chihaya, BitTorrent tracker Author faq, jq for everything  These put me in the credits, when really I did nothing:</description>
+      <description>Social GitHub @jzelinskie Mastodon @jzelinskie@floss.social Twitter @jimmyzelinskie HackerNews jzelinskie Reddit jzelinskie Last.fm jzelinskie IRC jzelinskie @ freenode Slack jzelinskie @ Kubernetes, CNCF, OCI Matrix @jzelinskie:matrix.org Email jimmy [at] zelinskie [dot] com Location NYC Open Source Coauthor SpiceDB Maintainer Open Container Initiative Community member Kubernetes Cofounder in spirit Quay, container registry Coauthor clair, container vulnerability static analysis server Coauthor OLM, a component of the Operator Framework Coauthor App Registry, the original inspiration for OCI Artifacts Author chihaya, BitTorrent tracker Author faq, jq for everything These put me in the credits, when really I did nothing:</description>
     </item>
     
     <item>
@@ -139,7 +139,7 @@ Docker did clue a lot of developers into the Linux kernel&amp;rsquo;s isolation 
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://jzelinskie.com/setup/</guid>
-      <description>Carry  Phone iPhone 11 Pro Headphones AirPods Pro E-Reader Kindle Voyage (2014) Console Nintendo Switch  Work  Bag Vermilyea Pelle Black Japanese Selvedge Briefcase Laptop Apple MacBook Pro (13-inch, 2020, Four Thunderbolt 3 ports) Keyboard Fujitsu HHKB Pro 2 (tmk_keyboard, PBT Spacebar) Shell zsh (zshrc) Editor neovim (vimrc)  Home  Case Louqe Ghost S1 MkII Batch 2 (album) Case Fan Noctua NF-A12x15 Motherboard MSI B450I CPU AMD Ryzen 7 3700X CPU Cooler Noctua NH-L12 CPU Fan Noctua NF-A12x15 Memory Corsair Vengeance LPX 3200MHz 2x16GB GPU EVGA GTX 1070 8GB Black Edition SSD HP EX950 1TB PSU Corsair SF600 Platinum Monitor LG 34GN850-B HMD Valve Index Keyboard Topre Realforce 87U EK Mouse Logitech G Pro Wireless Mousepad Artisan Hien VE S Headphones Audeze LCD-X Amplifier SMSL SP200 DAC Topping E30 Microphone Blue Yeti  Network  Router Ubiquiti EdgeRouter X SFP AP Ubiquiti UniFi AC AP Pro Storage TrueNAS Mini XL+ (2x256GB m.</description>
+      <description>Carry Phone iPhone 11 Pro Headphones AirPods Pro E-Reader Kindle Voyage (2014) Console Nintendo Switch Work Bag Vermilyea Pelle Black Japanese Selvedge Briefcase Laptop Apple MacBook Pro (14-inch, 2021, M1 Max, 64GiB) Keyboard Fujitsu HHKB Pro 2 (tmk_keyboard, PBT Spacebar) Terminal kitty Shell zsh Editor neovim, helix Home Case Louqe Ghost S1 MkII Batch 2 (album) Case Fan Noctua NF-A12x15 Motherboard MSI B450I CPU AMD Ryzen 7 3700X CPU Cooler Noctua NH-L12 CPU Fan Noctua NF-A12x15 Memory Corsair Vengeance LPX 3200MHz 2x16GB GPU EVGA GTX 1070 8GB Black Edition SSD HP EX950 1TB PSU Corsair SF600 Platinum Monitor LG 34GN850-B HMD Valve Index Keyboard Topre Realforce 87U EK Mouse Logitech G Pro Wireless Mousepad Artisan Hien VE S Headphones Audeze LCD-X Amplifier SMSL SP200 DAC Topping E30 Microphone Blue Yeti Network Router Ubiquiti EdgeRouter X SFP AP Ubiquiti UniFi AC AP Pro Storage TrueNAS Mini XL+ (2x256GB m.</description>
     </item>
     
   </channel>
